@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Dashboard",
+    "name": "sidebar.dashboard",
+    "is_heading": true,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": ""
+  },
+  {
+    "title": "Patient Dashboard",
+    "name": "sidebar.dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "dashboard.dashboard"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-group-fill"
+  },
+  {
+    "title": "Blank Page",
+    "name": "sidebar.blankPage",
+    "is_active": false,
+    "link": {
+      "name": "pages.blank-page"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "lab la-mendeley"
+  }
+]
