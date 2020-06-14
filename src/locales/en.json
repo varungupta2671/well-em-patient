@@ -1,6 +1,6 @@
 {
   "sidebar": {
-    "dashboard": "Dashboard",
+    "dashboard": "Patient Dashboard",
     "dashboard1": "Doctor Dashboard",
     "dashboard2": "Hospital Dashboard 1",
     "dashboard3": "Hospital Dashboard 2",
@@ -91,7 +91,9 @@
     "datepicker": "Datepicker",
     "select": "Select",
     "draggable": "Draggable",
-    "chat": "Chat"
+    "chat": "Chat",
+    "addAppointment": "Add Appointment",
+    "labTestBooking": "Lab Test Booking"
   },
   "nav": {
     "allNotifications": "All Notifications",
@@ -104,10 +106,10 @@
       "profileSub": "View personal profile details.",
       "profileEditTitle": "Edit Profile",
       "profileEditSub": "Modify your personal details.",
-      "accountSettingTitle": "Account Setting",
-      "accountSettingSub": "Manage your account parameters.",
-      "privacySettingTitle": "Privacy Setting",
-      "privacySettingSub": "Control your privacy parameters.",
+      "accountSettingTitle": "Change Password",
+      "accountSettingSub": "Manage your account password.",
+      "contactHmsTitle": "Contact HMS",
+      "contactHmsSub": "Contact us for any query.",
       "signout": "Sign Out"
     }
   },

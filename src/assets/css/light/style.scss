@@ -1,8 +1,8 @@
 /*
-Template: XRay - Responsive Bootstrap 4 Admin Dashboard Template
-Author: iqonicthemes.in
-Design and Developed by: iqonicthemes.in
-NOTE: This file contains the styling for responsive Template.
+Template: Well-EM
+Author: well-em.in
+Design and Developed by: Varun Gupta
+NOTE: This file contains the styling for responsive application.
 */
 
 /*================================================
@@ -295,7 +295,7 @@ body.sidebar-main .iq-sidebar .iq-menu li a[aria-expanded="true"] { border-radiu
                              Top Menu
 -----------------------------------------------------------------------*/
 .iq-top-navbar .iq-navbar-custom .iq-menu-bt { display: none; }
-.iq-top-navbar { padding: 0; min-height: 73px; position: fixed; top: 0; left: auto; right: 0; width: calc(100% - 320px); display: inline-block; z-index: 99; background: #ffffff; margin: 20px 30px; -webkit-box-shadow: 0px 0px 25px 0px rgba(45, 69, 95, 0.1); -moz-box-shadow: 0px 0px 25px 0px rgba(45, 69, 95, 0.1); box-shadow: 0px 0px 25px 0px rgba(45, 69, 95, 0.1); transition: all 0.45s ease 0s; border-radius: 25px; -webkit-border-radius: 25px; }
+.iq-top-navbar { padding: 0; min-height: 73px; position: fixed; top: 0; left: auto; right: 0; width: calc(100% - 230px); display: inline-block; z-index: 99; background: #ffffff; margin: 20px 30px; -webkit-box-shadow: 0px 0px 25px 0px rgba(45, 69, 95, 0.1); -moz-box-shadow: 0px 0px 25px 0px rgba(45, 69, 95, 0.1); box-shadow: 0px 0px 25px 0px rgba(45, 69, 95, 0.1); transition: all 0.45s ease 0s; border-radius: 25px; -webkit-border-radius: 25px; } // width: calc(100% - 320px)
 .iq-top-navbar.fixed-header { margin: 0; right: 0; width: calc(100% - 260px); border-radius: 0; transition: all 0.45s ease 0s; }
 .iq-top-navbar .iq-navbar-custom .navbar-breadcrumb { display: block; margin-left: 30px; padding: 10px 0; }
 .iq-top-navbar .breadcrumb .breadcrumb-item.active { color: #777D74; }

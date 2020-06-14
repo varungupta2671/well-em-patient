@@ -17,6 +17,8 @@ import ErrorPage from '../views/Pages/ErrorPage'
 import ComingSoon from '../views/Pages/ComingSoon'
 import Maintenance from '../views/Pages/Maintenance'
 import BlankPage from '../views/Pages/BlankPage'
+import AddAppointment from '../views/Pages/AddAppointment'
+import LabTestBooking from '../views/Pages/LabTestBooking'
 /* Todo */
 import Callback from '../views/AuthPages/Default/Callback'
 Vue.use(VueRouter)
@@ -90,6 +92,18 @@ const defaultlayout = (prop, mode = false) => [
     name: prop + '.blank-page',
     meta: { dark: mode, auth: true, name: 'Blank Page' },
     component: BlankPage
+  },
+  {
+    path: 'add-appointment',
+    name: prop + '.add-appointment',
+    meta: { dark: mode, auth: true, name: 'Add Appointment' },
+    component: AddAppointment
+  },
+  {
+    path: 'lab-test-booking',
+    name: prop + '.lab-test-booking',
+    meta: { dark: mode, auth: true, name: 'Lab Test Booking' },
+    component: LabTestBooking
   }
 ]
 
@@ -111,16 +125,16 @@ const routes = [
   {
     path: '/app',
     name: 'app',
-    component: Default,
+    component: Layout1,
     meta: { auth: true },
-    children: pagesChildRoutes('default')
+    children: defaultlayout('default')
   },
   {
     path: '/pages',
     name: 'pages',
-    component: Layout1,
+    component: Default,
     meta: { auth: true },
-    children: defaultlayout('pages')
+    children: pagesChildRoutes('pages')
   },
   {
     path: '/callback',

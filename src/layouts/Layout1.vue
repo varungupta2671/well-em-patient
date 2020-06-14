@@ -57,12 +57,11 @@
                     <div class="iq-card-body p-0 ">
                       <div class="bg-primary p-3">
                         <h5 class="mb-0 text-white line-height">Hello Varun</h5>
-                        <span class="text-white font-size-12">{{ $t('nav.user.available') }}</span>
                       </div>
                       <a href="#" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
                           <div class="rounded iq-card-icon iq-bg-primary">
-                            <i class="ri-file-line"></i>
+                            <i class="ri-account-pin-box-line"></i>
                           </div>
                           <div class="media-body ml-3">
                             <h6 class="mb-0 ">{{ $t('nav.user.profileTitle') }}</h6>
@@ -70,21 +69,10 @@
                           </div>
                         </div>
                       </a>
-                      <a href="#" class="iq-sub-card iq-bg-primary-success-hover">
-                        <div class="media align-items-center">
-                          <div class="rounded iq-card-icon iq-bg-success">
-                            <i class="ri-profile-line"></i>
-                          </div>
-                          <div class="media-body ml-3">
-                            <h6 class="mb-0 ">{{ $t('nav.user.profileEditTitle') }}</h6>
-                            <p class="mb-0 font-size-12">{{ $t('nav.user.profileEditSub') }}</p>
-                          </div>
-                        </div>
-                      </a>
                       <a href="#" class="iq-sub-card iq-bg-primary-danger-hover">
                         <div class="media align-items-center">
                           <div class="rounded iq-card-icon iq-bg-danger">
-                            <i class="ri-account-box-line"></i>
+                            <i class="ri-list-settings-line"></i>
                           </div>
                           <div class="media-body ml-3">
                             <h6 class="mb-0 ">{{ $t('nav.user.accountSettingTitle') }}</h6>
@@ -95,11 +83,11 @@
                       <a href="#" class="iq-sub-card iq-bg-primary-secondary-hover">
                         <div class="media align-items-center">
                           <div class="rounded iq-card-icon iq-bg-secondary">
-                            <i class="ri-lock-line"></i>
+                            <i class="ri-phone-line"></i>
                           </div>
                           <div class="media-body ml-3">
-                            <h6 class="mb-0 ">{{ $t('nav.user.privacySettingTitle') }}</h6>
-                            <p class="mb-0 font-size-12">{{ $t('nav.user.privacySettingSub')}}</p>
+                            <h6 class="mb-0 ">{{ $t('nav.user.contactHmsTitle') }}</h6>
+                            <p class="mb-0 font-size-12">{{ $t('nav.user.contactHmsSub')}}</p>
                           </div>
                         </div>
                       </a>

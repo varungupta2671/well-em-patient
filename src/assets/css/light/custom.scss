@@ -1,0 +1,53 @@
+/*
+Project: Well-EM
+Author: well-em.in
+Design and Developed by: Varun Gupta
+NOTE: This file contains the custom styling.
+*/
+
+/*================================================
+[  Table of contents  ]
+================================================
+
+:: General
+:: Dashboard
+:: Add Appointment
+:: Lab Test Booking
+:: Responsive
+
+======================================
+[ End table content ]
+======================================*/
+
+/*--------------------------------------------------------------------
+                            General
+---------------------------------------------------------------------*/
+.iq-sidebar {width: 172px;}
+
+/*---------------------------------------------------------------------
+                               Dashboard
+-----------------------------------------------------------------------*/
+.table .thead-light th {color: #089bab;background: #ceebee;border-color: #7ac6ce;}
+ul#dashboardTab li { background-color: #eff7f8; }
+ul#dashboardTab li a { border-color: #ceebee; }
+ul#dashboardTab li:first-child { border-radius: 15px 0 0 15px; border-left: none; }
+ul#dashboardTab li:last-child { border-radius: 0 15px 15px 0; }
+h5.d-modal-link {cursor: pointer;}
+h5.d-modal-link:focus {outline: none;}
+
+/*---------------------------------------------------------------------
+                               Add Appointment
+-----------------------------------------------------------------------*/
+.ap-doctor-fields {border: 1px solid #d7dbda;background-color: #edf5f6;padding: 15px;border-radius: 16px;}
+
+/*---------------------------------------------------------------------
+                               Lab Test Booking
+-----------------------------------------------------------------------*/
+.add-more-test {color: #089bab;font-size: 12px;cursor: pointer;}
+
+/*--------------------------------------------------------------------
+                            Responsive
+---------------------------------------------------------------------*/
+@media(min-width:1300px) {
+    .content-page {margin-left: 172px;}
+}
