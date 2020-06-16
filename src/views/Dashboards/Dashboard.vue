@@ -15,30 +15,22 @@
                 </div>
                 <div class="text-center mt-3">
                   <h4>
-                    <b>Varun Gupta</b>
+                    <b>{{patient.name}}</b>
                   </h4>
-                  <p>27 years, India</p>
+                  <p>{{patient.age}} years, India</p>
                 </div>
                 <ul
                   class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0"
                 >
                   <li class="text-center">
-                    <h6 class="text-primary">Weight</h6>
-                    <h3>
-                      67
-                      <span>kg</span>
-                    </h3>
-                  </li>
-                  <li class="text-center">
-                    <h6 class="text-primary">Height</h6>
-                    <h3>
-                      180
-                      <span>cm</span>
-                    </h3>
-                  </li>
-                  <li class="text-center">
                     <h6 class="text-primary">Blood Group</h6>
-                    <h3 class="text-warning">AB +</h3>
+                    <h3 class="text-warning">
+                      {{patient.bg}}
+                    </h3>
+                  </li>
+                  <li class="text-center">
+                    <h6 class="text-primary">HealthCare ID</h6>
+                    <h3 class="text-warning">{{patient.hid}}</h3>
                   </li>
                 </ul>
               </div>
@@ -51,26 +43,24 @@
             <template v-slot:body>
               <div class="about-info m-0 p-0">
                 <div class="row">
-                  <div class="col-4">Healthcare ID:</div>
-                  <h6 class="col-8 text-primary">1234567890</h6>
+                  <div class="col-4">Weight:</div>
+                  <div class="col-8">{{patient.weight}} kg</div>
+                  <div class="col-4">Height:</div>
+                  <div class="col-8">{{patient.height}} cm</div>
                   <div class="col-4">Aadhar ID:</div>
-                  <div class="col-8">1234567890</div>
+                  <div class="col-8">{{patient.aadharid}}</div>
                   <div class="col-4">D.O.B:</div>
-                  <div class="col-8">01/02/1993</div>
+                  <div class="col-8">{{patient.dob}}</div>
                   <div class="col-4">Sex:</div>
-                  <div class="col-8">Male</div>
+                  <div class="col-8">{{patient.sex === "m" ? "Male" : "Female"}}</div>
                   <div class="col-4">Phone:</div>
-                  <div class="col-8">
-                    <a href="tel:001-2351-25612">+91 9988845547</a>
-                  </div>
+                  <div class="col-8">{{patient.phone}}</div>
                   <div class="col-4">Email:</div>
-                  <div class="col-8">
-                    <a href="mailto:biniJets24@demo.com">varungupta2671@gmail.com</a>
-                  </div>
+                  <div class="col-8">{{patient.email}}</div>
                   <div class="col-4">Address:</div>
-                  <div class="col-8">111, XYZ Road</div>
+                  <div class="col-8">{{patient.address}}</div>
                   <div class="col-4">City:</div>
-                  <div class="col-8">Bangalore</div>
+                  <div class="col-8">{{patient.city}}</div>
                 </div>
               </div>
             </template>
@@ -83,7 +73,7 @@
             <iq-card body-class="bg-primary rounded pt-2 pb-2 pr-2">
               <template v-slot:body>
                 <div class="d-flex align-items-center justify-content-between">
-                  <p class="mb-0">Welcome Varun !</p>
+                  <p class="mb-0">Welcome {{patient.name}} !</p>
                   <div class="rounded iq-card-icon bg-white">
                     <img src="../../assets/images/page-img/37.png" class="img-fluid" alt="icon" />
                   </div>
@@ -360,78 +350,37 @@ export default {
   },
   data () {
     return {
-      patientChart: {
-        series: [
-          {
-            name: 'Servings',
-            data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31]
-          }
-        ],
-        annotations: {
-          points: [
-            {
-              x: 'Bananas',
-              seriesIndex: 0,
-              label: {
-                borderColor: '#775DD0',
-                offsetY: 0,
-                style: {
-                  color: '#fff',
-                  background: '#775DD0'
-                },
-                text: 'Bananas are good'
-              }
-            }
-          ]
-        },
-        chart: {
-          height: 350,
-          type: 'bar'
-        },
-        colors: ['#089bab'],
-        plotOptions: {
-          bar: {
-            columnWidth: '50%',
-            endingShape: 'rounded'
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          width: 2
-        },
-
-        grid: {
-          row: {
-            colors: ['#fff', '#f2f2f2']
-          }
-        },
-        xaxis: {
-          labels: {
-            rotate: -45
-          },
-          categories: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
-          tickPlacement: 'on'
-        },
-        yaxis: {
-          title: {
-            text: 'Servings'
-          }
-        },
-        fill: {
-          type: 'gradient',
-          gradient: {
-            shade: 'light',
-            type: 'horizontal',
-            shadeIntensity: 0.25,
-            gradientToColors: undefined,
-            inverseColors: true,
-            opacityFrom: 0.85,
-            opacityTo: 0.85,
-            stops: [50, 0, 100]
-          }
-        }
+      /**
+       * Patients
+       * --------
+       * "name" : "Sam",
+       * "age" : 27,
+       * "bg" : "AB+",
+       * "weight" : 67,
+       * "height" : 180,
+       * "hid" : "2345454",
+       * "aadharid" : "34234dff",
+       * "dob" : "01/02/1993",
+       * "sex" : "m",
+       * "phone" : "9988845535",
+       * "email" : "est@gmail.com",
+       * "address" : "332 Neeladhri, E-City",
+       * "city" : "Bangalore"
+      **/
+      patient: {
+        'name': 'Sam',
+        'age': 22,
+        'bg': 'B+',
+        'weight': 62,
+        'height': 176,
+        'hid': '2345454',
+        'aadharid': '234569383',
+        'dob': '01/02/1993',
+        'sex': 'm',
+        'phone': '9988845535',
+        'email': 'est@gmail.com',
+        'address': '332 Neeladhri, E-City',
+        'city': 'Bangalore'
       },
       items: [
         {
