@@ -62,6 +62,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import AuthServices from './../../../../services/auth'
+import constant from '../../../../config/constant'
 
 export default {
   name: 'SignIn1Form',
@@ -84,7 +85,16 @@ export default {
   methods: {
     onSubmit () {
       const self = this
-      AuthServices.login(this.user, self)
+      AuthServices.login(this.user)
+        .then(response => {
+          constant.authToken = response.data.token
+          localStorage.setItem('authToken', response.data.token)
+          self.$router.push({ name: 'dashboard.dashboard' })
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        })
     }
   }
 }

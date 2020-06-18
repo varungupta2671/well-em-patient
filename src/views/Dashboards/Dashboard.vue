@@ -386,9 +386,15 @@ export default {
   methods: {
     getPatientData () {
       AuthServices.checkAuth(this)
-        .then((result) => {
-          // console.log('patientData', result)
-          this.patient = result
+        .then(response => {
+          this.patient = response.data
+        })
+        .catch(error => {
+          console.log(error)
+          localStorage.removeItem('user')
+          localStorage.removeItem('authToken')
+          self.$router.push({ name: 'auth.sign-in' })
+        // this.errored = true
         })
     }
   }
