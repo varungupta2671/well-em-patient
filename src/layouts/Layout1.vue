@@ -130,6 +130,7 @@ import loader from '../assets/images/well-em-logo.png'
 import { wellem } from '../config/pluginInit'
 import { Users } from '../FackApi/api/chat'
 import { mapGetters, mapActions } from 'vuex'
+import constant from '../config/constant'
 export default {
   name: 'Layout1',
   components: {
@@ -213,8 +214,8 @@ export default {
       this.light()
     },
     logout () {
-      localStorage.removeItem('user')
       localStorage.removeItem('authToken')
+      constant.authToken = null
       this.$router.push({ name: 'auth.sign-in' })
     },
     langChange (lang) {
