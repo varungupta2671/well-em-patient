@@ -2,7 +2,7 @@
   <ValidationObserver ref="form" v-slot="{ handleSubmit }">
     <form novalidate @submit.prevent="handleSubmit(onSubmit)"> <!--- class="mt-4" --->
       <p>Enter your healthcare id and password to access your account.</p>
-      <ValidationProvider vid="hcareid" name="Healethcare Id" rules="required" v-slot="{ errors }">
+      <ValidationProvider vid="hid" name="Healethcare Id" rules="required" v-slot="{ errors }">
         <div class="form-group">
           <label for="hcareInput">Healthcare Id</label>
           <input
@@ -10,7 +10,7 @@
             :class="'form-control mb-0' +(errors.length > 0 ? ' is-invalid' : '')"
             id="hcareInput"
             aria-describedby="emailHelp"
-            v-model="user.hcareid"
+            v-model="user.hid"
             placeholder="Enter healthcare id"
             required
           />
@@ -61,18 +61,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import AuthServices from './../../../../services/auth'
 
 export default {
   name: 'SignIn1Form',
   props: ['formType', 'email', 'password'],
   data: () => ({
     user: {
-      email: '',
+      hid: '',
       password: ''
     }
   }),
   mounted () {
-    // this.user.email = this.$props.email
+    this.user.hid = this.$props.hid
     this.user.password = this.$props.password
   },
   computed: {
@@ -82,10 +83,8 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.login()
-    },
-    login () {
-      this.$router.push({ name: 'dashboard.dashboard' })
+      const self = this
+      AuthServices.login(this.user, self)
     }
   }
 }

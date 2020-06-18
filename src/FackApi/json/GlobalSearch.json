@@ -560,7 +560,7 @@
     "title": "Login",
     "is_active": false,
     "link": {
-      "name": "auth.sign-in1"
+      "name": "auth.sign-in"
     },
     "class_name": "",
     "is_icon_class": true,

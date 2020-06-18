@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import auth0 from 'auth0-js'
 import SignIn1Form from './Forms/SignIn1Form'
 import SignIn2Form from './Forms/SignIn2Form'
 import SignIn3Form from './Forms/SignIn3Form'
@@ -58,15 +57,10 @@ export default {
     ]
   }),
   mounted () {
-    const loggedIn = localStorage.getItem('access_token')
-    if (loggedIn !== undefined && loggedIn !== null) {
-      this.$router.push({ name: 'mini.dashboard.home-2' })
+    if (constant.authToken !== undefined && constant.authToken !== null && constant.authToken !== '') {
+      this.$router.push({ name: 'dashboard.dashboard' })
     }
   },
-  methods: {
-    loginOAuth0: function () {
-      new auth0.WebAuth(constant.auth0Config).authorize()
-    }
-  }
+  methods: {}
 }
 </script>

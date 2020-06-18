@@ -35,7 +35,7 @@ const childRoutes = (prop, mode) => [
 const authChildRoutes = (prop, mode = false) => [
   {
     path: 'sign-in',
-    name: prop + '.sign-in1',
+    name: prop + '.sign-in',
     meta: { dark: mode, auth: true },
     component: SignIn1
   },

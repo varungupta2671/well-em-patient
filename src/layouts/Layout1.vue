@@ -198,13 +198,6 @@ export default {
       this.$store.dispatch('Setting/miniSidebarAction')
       this.updateRadio()
     },
-    rtlChange () {
-      if (this.rtl) {
-        this.rtlRemove()
-      } else {
-        this.rtlAdd()
-      }
-    },
     changeColor (code) {
       document.documentElement.style.setProperty('--iq-primary', code.primary)
       document.documentElement.style.setProperty('--iq-primary-light', code.primaryLight)
@@ -221,8 +214,8 @@ export default {
     },
     logout () {
       localStorage.removeItem('user')
-      localStorage.removeItem('access_token')
-      this.$router.push({ name: 'auth.sign-in1' })
+      localStorage.removeItem('authToken')
+      this.$router.push({ name: 'auth.sign-in' })
     },
     langChange (lang) {
       this.langChangeState(lang)

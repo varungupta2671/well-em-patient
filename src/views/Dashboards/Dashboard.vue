@@ -217,7 +217,7 @@
                         aria-labelled-by="v-pills-ipr-tab"
                       >
                         <!-- // IPR data here -->
-                        <b-table :items="items" head-variant="light"></b-table>
+                        <b-table :items="iprData" head-variant="light"></b-table>
                         <!-- // IPR data ends here -->
                       </tab-content-item>
                     </tab-content>
@@ -342,66 +342,29 @@
 <script>
 import IqCard from '../../components/wellem/cards/iq-card'
 import { wellem } from '../../config/pluginInit'
+import constant from '../../config/constant'
+import AuthServices from './../../services/auth'
+
 export default {
   name: 'Dashboard',
   components: { IqCard },
   mounted () {
+    if (constant.authToken === '' || constant.authToken === undefined || constant.authToken === null) {
+      this.$router.push({ name: 'auth.sign-in' })
+    }
+    this.getPatientData()
     wellem.index()
   },
   data () {
     return {
-      /**
-       * Patients
-       * --------
-       * "name" : "Sam",
-       * "age" : 27,
-       * "bg" : "AB+",
-       * "weight" : 67,
-       * "height" : 180,
-       * "hid" : "2345454",
-       * "aadharid" : "34234dff",
-       * "dob" : "01/02/1993",
-       * "sex" : "m",
-       * "phone" : "9988845535",
-       * "email" : "est@gmail.com",
-       * "address" : "332 Neeladhri, E-City",
-       * "city" : "Bangalore"
-      **/
-      patient: {
-        'name': 'Sam',
-        'age': 22,
-        'bg': 'B+',
-        'weight': 62,
-        'height': 176,
-        'hid': '2345454',
-        'aadharid': '234569383',
-        'dob': '01/02/1993',
-        'sex': 'm',
-        'phone': '9988845535',
-        'email': 'est@gmail.com',
-        'address': '332 Neeladhri, E-City',
-        'city': 'Bangalore'
-      },
-      items: [
+      patient: {},
+      iprData: [
         {
           Date: '12/01/2020',
           'Admission ID': '234324453',
           'Hospital Name': 'Apolo, Gurgaon',
           Status: 'Discharged'
-        },
-        {
-          Date: '05/02/2020',
-          'Admission ID': '3556224',
-          'Hospital Name': 'Max, Noida',
-          Status: 'Pending'
-        },
-        {
-          Date: '14/03/2020',
-          'Admission ID': '790432',
-          'Hospital Name': 'Fortis, Gurgaon',
-          Status: 'Discharged'
-        }
-      ],
+        }],
       appointments: [
         {
           patient: 'Petey Cruiser',
@@ -416,43 +379,17 @@ export default {
           date: '25/02/2020',
           timing: '8:30 AM',
           contact: '+1-202-555-0164'
-        },
-        {
-          patient: 'Paul Molive',
-          doctor: 'Dr.Brock Lee',
-          date: '20/02/2020',
-          timing: '9:45 AM',
-          contact: '+1-202-555-0153'
-        },
-        {
-          patient: 'Anna Mull',
-          doctor: 'Dr.Barb Ackue',
-          date: '27/02/2020',
-          timing: '11:30 AM',
-          contact: '+1-202-555-0154'
-        },
-        {
-          patient: 'Paige Turner',
-          doctor: 'Dr.Walter Melon',
-          date: '28/02/2020',
-          timing: '3:30 AM',
-          contact: '+1-202-555-0101'
-        },
-        {
-          patient: 'Don Stairs',
-          doctor: 'Dr.Arty Ficial',
-          date: '28/02/2020',
-          timing: '4:30 PM',
-          contact: '+1-202-555-0176'
-        },
-        {
-          patient: 'Pat Agonia',
-          doctor: 'Dr.Barb Ackue',
-          date: '29/02/2020',
-          timing: '5:00 AM',
-          contact: '+1-202-555-0194'
         }
       ]
+    }
+  },
+  methods: {
+    getPatientData () {
+      AuthServices.checkAuth(this)
+        .then((result) => {
+          // console.log('patientData', result)
+          this.patient = result
+        })
     }
   }
 }

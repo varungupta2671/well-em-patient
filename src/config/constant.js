@@ -1,3 +1,4 @@
 export default {
-  webBaseURL: process.env.MIX_APP_URL
+  webBaseURL: 'http://localhost:3000',
+  authToken: localStorage.getItem('authToken') || ''
 }
