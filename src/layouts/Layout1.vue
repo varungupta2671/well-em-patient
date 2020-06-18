@@ -48,7 +48,7 @@
                 <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
                   <img :src="userProfile" class="img-fluid rounded mr-3" alt="user">
                   <div class="caption">
-                    <h6 class="mb-0 line-height">Varun Gupta</h6>
+                    <h6 class="mb-0 line-height">{{ userName }}</h6>
                     <span class="font-size-12">{{ $t('nav.user.available') }}</span>
                   </div>
                 </a>
@@ -56,7 +56,7 @@
                   <div class="iq-card shadow-none m-0">
                     <div class="iq-card-body p-0 ">
                       <div class="bg-primary p-3">
-                        <h5 class="mb-0 text-white line-height">Hello Varun</h5>
+                        <h5 class="mb-0 text-white line-height">Hello {{ userName }}</h5>
                       </div>
                       <a href="#" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
@@ -153,6 +153,7 @@ export default {
   // sidebarTicket
   data () {
     return {
+      userName: constant.userName,
       horizontal: false,
       mini: false,
       darkMode: false,
@@ -214,6 +215,7 @@ export default {
       this.light()
     },
     logout () {
+      localStorage.removeItem('userName')
       localStorage.removeItem('authToken')
       constant.authToken = null
       this.$router.push({ name: 'auth.sign-in' })

@@ -388,10 +388,12 @@ export default {
       AuthServices.checkAuth(this)
         .then(response => {
           this.patient = response.data
+          localStorage.setItem('userName', response.data.name)
+          constant.userName = response.data.name
         })
         .catch(error => {
           console.log(error)
-          localStorage.removeItem('user')
+          localStorage.removeItem('userName')
           localStorage.removeItem('authToken')
           self.$router.push({ name: 'auth.sign-in' })
         // this.errored = true
