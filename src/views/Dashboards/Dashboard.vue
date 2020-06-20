@@ -15,7 +15,7 @@
                 </div>
                 <div class="text-center mt-3">
                   <h4>
-                    <b>{{patient.name}}</b>
+                    <b class="user-name">{{ patient.name }}</b>
                   </h4>
                   <p>{{patient.age}} years, India</p>
                 </div>
@@ -37,29 +37,29 @@
             </template>
           </iq-card>
           <iq-card body-class="iq-card-body">
-            <template v-slot:headerTitle>
+            <!-- <template v-slot:headerTitle>
               <h4 class="card-title">Personal Information</h4>
-            </template>
+            </template> -->
             <template v-slot:body>
               <div class="about-info m-0 p-0">
                 <div class="row">
-                  <div class="col-4">Weight:</div>
+                  <div class="col-4 info-header">Weight:</div>
                   <div class="col-8">{{patient.weight}} kg</div>
-                  <div class="col-4">Height:</div>
+                  <div class="col-4 info-header">Height:</div>
                   <div class="col-8">{{patient.height}} cm</div>
-                  <div class="col-4">Aadhar ID:</div>
+                  <div class="col-4 info-header">Aadhar ID:</div>
                   <div class="col-8">{{patient.aadharid}}</div>
-                  <div class="col-4">D.O.B:</div>
+                  <div class="col-4 info-header">D.O.B:</div>
                   <div class="col-8">{{patient.dob}}</div>
-                  <div class="col-4">Sex:</div>
+                  <div class="col-4 info-header">Sex:</div>
                   <div class="col-8">{{patient.sex === "m" ? "Male" : "Female"}}</div>
-                  <div class="col-4">Phone:</div>
+                  <div class="col-4 info-header">Phone:</div>
                   <div class="col-8">{{patient.phone}}</div>
-                  <div class="col-4">Email:</div>
+                  <div class="col-4 info-header">Email:</div>
                   <div class="col-8">{{patient.email}}</div>
-                  <div class="col-4">Address:</div>
+                  <div class="col-4 info-header">Address:</div>
                   <div class="col-8">{{patient.address}}</div>
-                  <div class="col-4">City:</div>
+                  <div class="col-4 info-header">City:</div>
                   <div class="col-8">{{patient.city}}</div>
                 </div>
               </div>
@@ -69,7 +69,7 @@
       </b-col>
       <b-col lg="8">
         <b-row>
-          <b-col sm="12">
+          <!-- <b-col sm="12">
             <iq-card body-class="bg-primary rounded pt-2 pb-2 pr-2">
               <template v-slot:body>
                 <div class="d-flex align-items-center justify-content-between">
@@ -80,6 +80,29 @@
                 </div>
               </template>
             </iq-card>
+          </b-col> -->
+          <b-col lg="6"></b-col>
+          <b-col lg="6" md="12">
+            <iq-card body-class="p-0">
+              <template v-slot:body>
+                <div class="iq-edit-list">
+                  <tab-nav :pills="true" id="dashboardTab" class="iq-edit-profile d-flex">
+                    <tab-nav-items
+                      class="col-md-6 p-0"
+                      :active="true"
+                      href="#v-pills-opr"
+                      title="OPR"
+                    />
+                    <tab-nav-items
+                      class="col-md-6 p-0"
+                      :active="false"
+                      href="#v-pills-ipr"
+                      title=" IPR"
+                    />
+                  </tab-nav>
+                </div>
+              </template>
+            </iq-card>
           </b-col>
         </b-row>
         <iq-card body-class="pb-0">
@@ -87,28 +110,6 @@
             <b-row>
               <b-col md="12">
                 <b-row>
-                  <b-col lg="12">
-                    <iq-card body-class="p-0">
-                      <template v-slot:body>
-                        <div class="iq-edit-list">
-                          <tab-nav :pills="true" id="dashboardTab" class="iq-edit-profile d-flex">
-                            <tab-nav-items
-                              class="col-md-3 p-0"
-                              :active="true"
-                              href="#v-pills-opr"
-                              title="OPR"
-                            />
-                            <tab-nav-items
-                              class="col-md-3 p-0"
-                              :active="false"
-                              href="#v-pills-ipr"
-                              title=" IPR"
-                            />
-                          </tab-nav>
-                        </div>
-                      </template>
-                    </iq-card>
-                  </b-col>
                   <b-col lg="12">
                     <!--- sm=9 --->
                     <tab-content id="v-pills-tabContent" class="mt-0">
@@ -131,12 +132,12 @@
                                   </div>
                                   <div class="text-right">
                                     <h2 class="mb-0">
-                                      <span class="counter">5600 Records</span>
+                                      <span class="counter">{{records.consultation}} Record</span>
                                     </h2>
-                                    <h5
+                                    <h6
                                       class="d-modal-link"
                                       v-b-modal.modal-3
-                                    >View Previous Consultations</h5>
+                                    >View Previous Consultations</h6>
                                   </div>
                                 </div>
                               </template>
@@ -154,12 +155,12 @@
                                   </div>
                                   <div class="text-right">
                                     <h2 class="mb-0">
-                                      <span class="counter">3450 Records</span>
+                                      <span class="counter">{{records.lab}} Record</span>
                                     </h2>
-                                    <h5
+                                    <h6
                                       class="d-modal-link"
                                       v-b-modal.modal-3
-                                    >View Previous Lab Records</h5>
+                                    >View Previous Lab Records</h6>
                                   </div>
                                 </div>
                               </template>
@@ -177,9 +178,9 @@
                                   </div>
                                   <div class="text-right">
                                     <h2 class="mb-0">
-                                      <span class="counter">3500 Receipts</span>
+                                      <span class="counter">{{records.receipt}} Receipt</span>
                                     </h2>
-                                    <h5 class="d-modal-link" v-b-modal.modal-3>View Receipts</h5>
+                                    <h6 class="d-modal-link" v-b-modal.modal-3>View Receipts</h6>
                                   </div>
                                 </div>
                               </template>
@@ -197,12 +198,12 @@
                                   </div>
                                   <div class="text-right">
                                     <h2 class="mb-0">
-                                      <span class="counter">4500 Records</span>
+                                      <span class="counter">{{records.summary}} Record</span>
                                     </h2>
-                                    <h5
+                                    <h6
                                       class="d-modal-link"
                                       v-b-modal.modal-3
-                                    >View Discharge Summary</h5>
+                                    >View Discharge Summary</h6>
                                   </div>
                                 </div>
                               </template>
@@ -229,7 +230,7 @@
         </iq-card>
         <iq-card body-class="pb-0">
           <template v-slot:headerTitle>
-            <h4 class="card-title">Bookings</h4>
+            <h4 class="card-title">Bookings:</h4>
           </template>
           <template v-slot:body>
             <b-row>
@@ -246,7 +247,7 @@
                           <template v-slot:body>
                             <div class="d-flex align-items-center justify-content-between">
                               <div class="rounded-circle iq-card-icon bg-white">
-                                <i class="ri-user-fill text-primary"></i>
+                                <i class="ri-user-fill"></i>
                               </div>
                               <div class="text-right">
                                 <h4
@@ -265,7 +266,7 @@
                           <template v-slot:body>
                             <div class="d-flex align-items-center justify-content-between">
                               <div class="rounded-circle iq-card-icon bg-white">
-                                <i class="ri-women-fill text-primary"></i>
+                                <i class="ri-women-fill"></i>
                               </div>
                               <div class="text-right">
                                 <h4
@@ -290,52 +291,33 @@
     <b-modal
       id="modal-3"
       scrollable
-      size="xl"
-      title="List"
-      ok-title="Save Changes"
+      size="lg"
+      title="Records"
+      ok-title="Print"
       cancel-title="Close"
     >
-      <iq-card class-name="iq-card-block iq-card-stretch iq-card-height">
-        <template v-slot:headerAction>
-          <b-dropdown size="lg p-0" variant="link" toggle-class="text-decoration-none" no-caret>
-            <template v-slot:button-content>
-              <span class="dropdown-toggle p-0" id="dropdownMenuButton5" data-toggle="dropdown">
-                <i class="ri-more-fill m-0 text-primary"></i>
-              </span>
-            </template>
-            <b-dropdown-item href="#">
-              <i class="ri-printer-fill mr-2"></i>Print
-            </b-dropdown-item>
-            <b-dropdown-item href="#">
-              <i class="ri-file-download-fill mr-2"></i>Download
-            </b-dropdown-item>
-          </b-dropdown>
-        </template>
-        <template v-slot:body>
-          <div class="table-responsive">
-            <table class="table mb-0 table-borderless">
-              <thead>
-                <tr>
-                  <th scope="col">Patient</th>
-                  <th scope="col">Doctor</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Timing</th>
-                  <th scope="col">Contact</th>
-                </tr>
-              </thead>
-              <tbody v-for="appointment in appointments" :key="appointment.id">
-                <tr>
-                  <td>{{appointment.patient}}</td>
-                  <td>{{appointment.doctor}}</td>
-                  <td>{{appointment.date}}</td>
-                  <td>{{appointment.timing}}</td>
-                  <td>{{appointment.contact}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </template>
-      </iq-card>
+      <div class="table-responsive">
+        <table class="table mb-0 table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">Patient</th>
+              <th scope="col">Doctor</th>
+              <th scope="col">Date</th>
+              <th scope="col">Timing</th>
+              <th scope="col">Contact</th>
+            </tr>
+          </thead>
+          <tbody v-for="appointment in appointments" :key="appointment.id">
+            <tr>
+              <td>{{appointment.patient}}</td>
+              <td>{{appointment.doctor}}</td>
+              <td>{{appointment.date}}</td>
+              <td>{{appointment.timing}}</td>
+              <td>{{appointment.contact}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </b-modal>
   </b-container>
 </template>
@@ -357,11 +339,34 @@ export default {
   },
   data () {
     return {
-      patient: {},
+      patient: {
+        name: ''
+      },
+      records: {
+        consultation: 1,
+        lab: 1,
+        receipt: 1,
+        summary: 1
+      },
       iprData: [
         {
           Date: '12/01/2020',
           'Admission ID': '234324453',
+          'Hospital Name': 'Apolo, Gurgaon',
+          Status: 'Discharged'
+        }, {
+          Date: '11/01/2020',
+          'Admission ID': '234324442',
+          'Hospital Name': 'Apolo, Gurgaon',
+          Status: 'Discharged'
+        }, {
+          Date: '10/01/2020',
+          'Admission ID': '234324430',
+          'Hospital Name': 'Apolo, Gurgaon',
+          Status: 'Discharged'
+        }, {
+          Date: '09/01/2020',
+          'Admission ID': '234324412',
           'Hospital Name': 'Apolo, Gurgaon',
           Status: 'Discharged'
         }],
@@ -372,13 +377,6 @@ export default {
           date: '20/02/2020',
           timing: '8:00 AM',
           contact: '+1-202-555-0146'
-        },
-        {
-          patient: 'Anna Sthesia',
-          doctor: 'Dr.Pete Sariya',
-          date: '25/02/2020',
-          timing: '8:30 AM',
-          contact: '+1-202-555-0164'
         }
       ]
     }
@@ -395,7 +393,7 @@ export default {
           console.log(error)
           localStorage.removeItem('userName')
           localStorage.removeItem('authToken')
-          self.$router.push({ name: 'auth.sign-in' })
+          this.$router.push({ name: 'auth.sign-in' })
         // this.errored = true
         })
     }

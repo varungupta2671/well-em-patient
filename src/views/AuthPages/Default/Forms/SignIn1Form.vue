@@ -9,7 +9,7 @@
             type="text"
             :class="'form-control mb-0' +(errors.length > 0 ? ' is-invalid' : '')"
             id="hcareInput"
-            aria-describedby="emailHelp"
+            aria-describedby="hcareIdHelp"
             v-model="user.hid"
             placeholder="Enter healthcare id"
             required

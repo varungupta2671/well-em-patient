@@ -441,3 +441,8 @@ export const flatpickerSetting = {
   altInput: true,
   dateFormat: 'Y-m-d'
 }
+
+export const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
