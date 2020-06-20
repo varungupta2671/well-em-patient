@@ -144,13 +144,13 @@ export default {
       custom: [
         {
           name: 'selectDoctor',
-          label: 'Select Doctor',
+          label: 'Select doctor from list',
           value: 'selectd',
           disabled: false
         },
         {
           name: 'selectDoctor',
-          label: 'Enter Doctor ID',
+          label: 'Having doctor Id ?',
           value: 'enterd',
           disabled: false
         }

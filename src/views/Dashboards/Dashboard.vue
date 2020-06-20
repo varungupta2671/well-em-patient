@@ -245,14 +245,13 @@
                           body-class="iq-bg-primary rounded"
                         >
                           <template v-slot:body>
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between"
+                            @click="$router.push({ name: 'default.add-appointment' })">
                               <div class="rounded-circle iq-card-icon bg-white">
                                 <i class="ri-user-fill"></i>
                               </div>
                               <div class="text-right">
-                                <h4
-                                  @click="$router.push({ name: 'default.add-appointment' })"
-                                >Book New Appointment</h4>
+                                <h4>Book New Appointment</h4>
                               </div>
                             </div>
                           </template>
@@ -264,14 +263,13 @@
                           body-class="iq-bg-primary rounded"
                         >
                           <template v-slot:body>
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between"
+                            @click="$router.push({ name: 'default.lab-test-booking' })">
                               <div class="rounded-circle iq-card-icon bg-white">
                                 <i class="ri-women-fill"></i>
                               </div>
                               <div class="text-right">
-                                <h4
-                                  @click="$router.push({ name: 'default.lab-test-booking' })"
-                                >Book New Lab Test</h4>
+                                <h4>Book New Lab Test</h4>
                               </div>
                             </div>
                           </template>
