@@ -34,7 +34,7 @@ export const wellem = {
     setTimeout(() => {
       load.classList.add('d-none')
     }, 1400)
-    // $('#loading').delay(1000).fadeOut('slow')
+    $('#loading').delay(1000).fadeOut('slow')
   },
   activeRoute () {
     let obj = {
@@ -42,7 +42,7 @@ export const wellem = {
       breadCrumb: [
         {
           html: '<i class="ri-home-4-line mr-1 float-left"></i>Home',
-          to: { name: 'mini.dashboard.home-1' }
+          to: { name: 'dashboard.dashboard' }
         },
         {
           text: Route.currentRoute.meta.name,

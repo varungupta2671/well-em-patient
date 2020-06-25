@@ -35,8 +35,9 @@ NOTE: This file contains the custom styling.
 ul#dashboardTab li a { border-color: #ceebee; }
 ul#dashboardTab li:first-child { border-radius: 15px 0 0 15px; border-left: none; }
 ul#dashboardTab li:last-child { border-radius: 0 15px 15px 0; }
-h6.d-modal-link {cursor: pointer;}
-h6.d-modal-link:focus {outline: none;}
+.d-modal-link {cursor: pointer;}
+.d-modal-link:focus {outline: none;}
+.d-modal-link:hover {color: #089bab;}
 
 /*---------------------------------------------------------------------
                                Add Appointment

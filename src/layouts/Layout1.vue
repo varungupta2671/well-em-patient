@@ -22,12 +22,14 @@
                   <div class="iq-card shadow-none m-0">
                     <div class="iq-card-body p-0 ">
                       <div class="bg-primary p-3">
-                        <h5 class="mb-0 text-white">{{ $t('nav.allNotifications') }}<small class="badge  badge-light float-right pt-1">4</small></h5>
+                        <h5 class="mb-0 text-white">{{ $t('nav.allNotifications') }}<small class="badge  badge-light float-right pt-1">{{ notification.length }}</small></h5>
                       </div>
                       <a href="#" class="iq-sub-card" v-for="(item, index) in notification" :key="index">
                         <div class="media align-items-center">
                           <div class="">
-                            <img class="avatar-40 rounded" :src="item.image" alt="img">
+                            <div class="rounded-circle iq-card-icon" :class="`${item.reminderbg}`">
+                              <i :class="`${item.remindericon}`"></i>
+                            </div>
                           </div>
                           <div class="media-body ml-3">
                             <h6 class="mb-0 ">{{ item.name }}</h6>
@@ -157,7 +159,7 @@ export default {
       horizontal: false,
       mini: false,
       darkMode: false,
-      animated: { enter: 'zoomIn', exit: 'zoomOut' },
+      animated: { enter: 'fadeIn', exit: 'fadeOut' },
       animateClass: [
         { value: { enter: 'zoomIn', exit: 'zoomOut' }, text: 'Zoom' },
         { value: { enter: 'fadeInUp', exit: 'fadeOutDown' }, text: 'Fade' },
@@ -170,19 +172,9 @@ export default {
       logo: loader,
       usersList: Users,
       rtl: false,
-      message: [
-        { image: require('../assets/images/user/01.jpg'), name: 'Nik Emma Watson', date: '13 jan' },
-        { image: require('../assets/images/user/02.jpg'), name: 'Greta Life', date: '14 Jun' },
-        { image: require('../assets/images/user/03.jpg'), name: 'Barb Ackue', date: '16 Aug' },
-        { image: require('../assets/images/user/04.jpg'), name: 'Anna Sthesia', date: '21 Sept' },
-        { image: require('../assets/images/user/05.jpg'), name: 'Bob Frapples', date: '29 Sept' }
-      ],
       notification: [
-        { image: require('../assets/images/user/01.jpg'), name: 'Nik Emma Watson', date: '23 hour ago', description: 'Enjoy smart access to videos, games' },
-        { image: require('../assets/images/user/02.jpg'), name: 'Greta Life', date: '14 hour ago', description: 'Google Chromecast: Enjoy a world of entertainment' },
-        { image: require('../assets/images/user/03.jpg'), name: 'Barb Ackue', date: '16 hour ago', description: 'Dell Inspiron Laptop: Get speed and performance from' },
-        { image: require('../assets/images/user/04.jpg'), name: 'Anna Sthesia', date: '21 hour ago', description: 'Deliver your favorite playlist anywhere in your home ' },
-        { image: require('../assets/images/user/05.jpg'), name: 'Bob Frapples', date: '11 hour ago', description: 'MacBook Air features up to 8GB of memory, a fifth-generation' }
+        { reminderbg: 'bg-danger', remindericon: 'ri-calendar-fill', name: 'Medicine Time', date: '23 hour left', description: 'Crocine' },
+        { reminderbg: 'bg-warning', remindericon: 'ri-notification-3-fill', name: 'Test Report', date: '14 hour left', description: '' }
       ]
     }
   },

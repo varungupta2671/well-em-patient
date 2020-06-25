@@ -251,7 +251,7 @@
                                 <i class="ri-user-fill"></i>
                               </div>
                               <div class="text-right">
-                                <h4>Book New Appointment</h4>
+                                <h4 class="d-modal-link">Book New Appointment</h4>
                               </div>
                             </div>
                           </template>
@@ -269,7 +269,7 @@
                                 <i class="ri-women-fill"></i>
                               </div>
                               <div class="text-right">
-                                <h4>Book New Lab Test</h4>
+                                <h4 class="d-modal-link">Book New Lab Test</h4>
                               </div>
                             </div>
                           </template>
@@ -381,7 +381,8 @@ export default {
   },
   methods: {
     getPatientData () {
-      AuthServices.checkAuth(this)
+      const payload = { 'type': 'p' }
+      AuthServices.checkAuth(payload)
         .then(response => {
           this.patient = response.data
           localStorage.setItem('userName', response.data.name)
