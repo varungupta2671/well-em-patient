@@ -381,8 +381,7 @@ export default {
   },
   methods: {
     getPatientData () {
-      const payload = { 'type': 'p' }
-      AuthServices.checkAuth(payload)
+      AuthServices.checkAuth('p')
         .then(response => {
           this.patient = response.data
           localStorage.setItem('userName', response.data.name)

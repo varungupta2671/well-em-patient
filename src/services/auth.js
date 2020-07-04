@@ -2,14 +2,14 @@ import { instance } from './index'
 import constant from '../config/constant'
 
 export default {
-  login (userData) {
-    return instance.post('/auth/patient/signin', userData)
+  register (userType, userData) {
+    return instance.post('/api/register/' + userType, userData)
   },
-  checkAuth (userData) {
+  login (userType, userData) {
+    return instance.post('/auth/signin/' + userType, userData)
+  },
+  checkAuth (userType) {
     instance.defaults.headers.common['token'] = constant.authToken
-    return instance.post('/auth/check', userData)
-  },
-  register (userData) {
-    return instance.post('/api/register', userData)
+    return instance.post('/auth/check/' + userType)
   }
 }

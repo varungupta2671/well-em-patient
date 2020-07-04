@@ -10,7 +10,7 @@
             :class="'form-control mb-0' +(errors.length > 0 ? ' is-invalid' : '')"
             id="hcareInput"
             aria-describedby="hcareIdHelp"
-            v-model="user.hid"
+            v-model="user.uid"
             placeholder="Enter healthcare id"
             required
           />
@@ -69,12 +69,12 @@ export default {
   props: ['formType', 'email', 'password'],
   data: () => ({
     user: {
-      hid: '',
+      uid: '',
       password: ''
     }
   }),
   mounted () {
-    this.user.hid = this.$props.hid
+    this.user.uid = this.$props.uid
     this.user.password = this.$props.password
   },
   computed: {
@@ -84,10 +84,10 @@ export default {
   },
   methods: {
     onSubmit () {
-      AuthServices.login(this.user)
+      AuthServices.login('p', this.user)
         .then(response => {
-          constant.authToken = response.data.token
-          localStorage.setItem('authToken', response.data.token)
+          constant.authToken = response.headers['auth-token']
+          localStorage.setItem('authToken', response.headers['auth-token'])
           this.$router.push({ name: 'dashboard.dashboard' })
         })
         .catch(error => {
