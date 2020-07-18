@@ -24,10 +24,9 @@
 import SignIn1Form from './Forms/SignIn1Form'
 import SignIn2Form from './Forms/SignIn2Form'
 import SignIn3Form from './Forms/SignIn3Form'
-import constant from '../../../config/constant'
 
 export default {
-  name: 'SignIn1',
+  name: 'SignIn',
   components: { SignIn1Form, SignIn2Form, SignIn3Form },
   data: () => ({
     stateActive: {
@@ -56,11 +55,7 @@ export default {
       }
     ]
   }),
-  mounted () {
-    if (constant.authToken !== undefined && constant.authToken !== null && constant.authToken !== '') {
-      this.$router.push({ name: 'dashboard.dashboard' })
-    }
-  },
+  mounted () {},
   methods: {}
 }
 </script>

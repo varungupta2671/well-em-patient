@@ -15,18 +15,16 @@
                 </div>
                 <div class="text-center mt-3">
                   <h4>
-                    <b class="user-name">{{ patient.name }}</b>
+                    <b class="user-name">{{ patient.name | capitalizeEach}}</b>
                   </h4>
-                  <p>{{patient.age}} years, India</p>
+                  <p>{{patient.dob | age}} years, India</p>
                 </div>
                 <ul
                   class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0"
                 >
                   <li class="text-center">
                     <h6 class="text-primary">Blood Group</h6>
-                    <h3 class="text-warning">
-                      {{patient.bg}}
-                    </h3>
+                    <h3 class="text-warning">{{patient.bg}}</h3>
                   </li>
                   <li class="text-center">
                     <h6 class="text-primary">HealthCare ID</h6>
@@ -39,7 +37,7 @@
           <iq-card body-class="iq-card-body">
             <!-- <template v-slot:headerTitle>
               <h4 class="card-title">Personal Information</h4>
-            </template> -->
+            </template>-->
             <template v-slot:body>
               <div class="about-info m-0 p-0">
                 <div class="row">
@@ -50,9 +48,9 @@
                   <div class="col-4 info-header">Aadhar ID:</div>
                   <div class="col-8">{{patient.aadharid}}</div>
                   <div class="col-4 info-header">D.O.B:</div>
-                  <div class="col-8">{{patient.dob}}</div>
+                  <div class="col-8">{{patient.dob | formatDate}}</div>
                   <div class="col-4 info-header">Sex:</div>
-                  <div class="col-8">{{patient.sex === "m" ? "Male" : "Female"}}</div>
+                  <div class="col-8">{{patient.sex | gender}}</div>
                   <div class="col-4 info-header">Phone:</div>
                   <div class="col-8">{{patient.phone}}</div>
                   <div class="col-4 info-header">Email:</div>
@@ -66,41 +64,94 @@
             </template>
           </iq-card>
         </div>
+
+        <iq-card body-class="p-0">
+          <template v-slot:body>
+            <div class="iq-edit-list">
+              <tab-nav :pills="true" id="dashboardTab" class="iq-edit-profile d-flex">
+                <tab-nav-items class="col-md-6 p-0" :active="true" href="#v-pills-opr" title="OPR" />
+                <tab-nav-items class="col-md-6 p-0" :active="false" href="#v-pills-ipr" title=" IPR" />
+              </tab-nav>
+            </div>
+          </template>
+        </iq-card>
       </b-col>
       <b-col lg="8">
         <b-row>
-          <!-- <b-col sm="12">
-            <iq-card body-class="bg-primary rounded pt-2 pb-2 pr-2">
+
+          <b-col sm="6">
+            <iq-card class-name="iq-card-block" iq-card-stretch iq-card-height>
+              <template v-slot:headerTitle>
+                <h4 class="card-title">Health Curve</h4>
+              </template>
               <template v-slot:body>
-                <div class="d-flex align-items-center justify-content-between">
-                  <p class="mb-0">Welcome {{patient.name}} !</p>
-                  <div class="rounded iq-card-icon bg-white">
-                    <img src="../../assets/images/page-img/37.png" class="img-fluid" alt="icon" />
-                  </div>
-                </div>
+                <ApexChart
+                  element="home-chart-06"
+                  :chartOption="darkChart1"
+                  v-if="$route.meta.dark"
+                />
+                <ApexChart element="home-chart-06" :chartOption="chart1" v-else />
               </template>
             </iq-card>
-          </b-col> -->
-          <b-col lg="6"></b-col>
-          <b-col lg="6" md="12">
-            <iq-card body-class="p-0">
+          </b-col>
+          <b-col lg="6">
+            <iq-card body-class="pb-0" class-name="iq-card-block iq-card-stretch iq-card-height">
+              <template v-slot:headerTitle>
+                <h4 class="card-title">Bookings:</h4>
+              </template>
               <template v-slot:body>
-                <div class="iq-edit-list">
-                  <tab-nav :pills="true" id="dashboardTab" class="iq-edit-profile d-flex">
-                    <tab-nav-items
-                      class="col-md-6 p-0"
-                      :active="true"
-                      href="#v-pills-opr"
-                      title="OPR"
-                    />
-                    <tab-nav-items
-                      class="col-md-6 p-0"
-                      :active="false"
-                      href="#v-pills-ipr"
-                      title=" IPR"
-                    />
-                  </tab-nav>
-                </div>
+                <b-row>
+                  <b-col md="12">
+                    <b-row>
+                      <b-col lg="12">
+                        <!-- // Bookings data here -->
+                        <b-row>
+                          <b-col md="12">
+                            <iq-card
+                              class-name="iq-card-block iq-card-stretch iq-card-height"
+                              body-class="iq-bg-primary rounded"
+                            >
+                              <template v-slot:body>
+                                <div
+                                  class="d-flex align-items-center justify-content-between"
+                                  @click="$router.push({ name: 'default.add-appointment' })"
+                                >
+                                  <div class="rounded-circle iq-card-icon bg-white">
+                                    <i class="ri-user-fill"></i>
+                                  </div>
+                                  <div class="text-right">
+                                    <h4 class="d-modal-link">Book New Appointment</h4>
+                                  </div>
+                                </div>
+                              </template>
+                            </iq-card>
+                          </b-col>
+                          <b-col md="12">
+                            <iq-card
+                              class-name="iq-card-block iq-card-stretch iq-card-height"
+                              body-class="iq-bg-primary rounded"
+                            >
+                              <template v-slot:body>
+                                <div
+                                  class="d-flex align-items-center justify-content-between"
+                                  @click="$router.push({ name: 'default.lab-test-booking' })"
+                                >
+                                  <div class="rounded-circle iq-card-icon bg-white">
+                                    <i class="ri-women-fill"></i>
+                                  </div>
+                                  <div class="text-right">
+                                    <h4 class="d-modal-link">Book New Lab Test</h4>
+                                  </div>
+                                </div>
+                              </template>
+                            </iq-card>
+                          </b-col>
+                        </b-row>
+                        <!-- // Bookings data ends here -->
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
               </template>
             </iq-card>
           </b-col>
@@ -131,13 +182,13 @@
                                     <i class="ri-user-fill"></i>
                                   </div>
                                   <div class="text-right">
-                                    <h2 class="mb-0">
-                                      <span class="counter">{{records.consultation}} Record</span>
-                                    </h2>
+                                    <h4 class="mb-0">
+                                      <span class="counter">Previous Consultations</span>
+                                    </h4>
                                     <h6
                                       class="d-modal-link"
                                       v-b-modal.modal-3
-                                    >View Previous Consultations</h6>
+                                    >View {{records.consultation}} Record</h6>
                                   </div>
                                 </div>
                               </template>
@@ -154,13 +205,13 @@
                                     <i class="ri-women-fill"></i>
                                   </div>
                                   <div class="text-right">
-                                    <h2 class="mb-0">
-                                      <span class="counter">{{records.lab}} Record</span>
-                                    </h2>
+                                    <h4 class="mb-0">
+                                      <span class="counter">Previous Lab Records</span>
+                                    </h4>
                                     <h6
                                       class="d-modal-link"
                                       v-b-modal.modal-3
-                                    >View Previous Lab Records</h6>
+                                    >View {{records.lab}} Record</h6>
                                   </div>
                                 </div>
                               </template>
@@ -177,10 +228,10 @@
                                     <i class="ri-group-fill"></i>
                                   </div>
                                   <div class="text-right">
-                                    <h2 class="mb-0">
-                                      <span class="counter">{{records.receipt}} Receipt</span>
-                                    </h2>
-                                    <h6 class="d-modal-link" v-b-modal.modal-3>View Receipts</h6>
+                                    <h4 class="mb-0">
+                                      <span class="counter">Receipts</span>
+                                    </h4>
+                                    <h6 class="d-modal-link" v-b-modal.modal-3>View {{records.receipt}} Receipt</h6>
                                   </div>
                                 </div>
                               </template>
@@ -197,13 +248,13 @@
                                     <i class="ri-hospital-line"></i>
                                   </div>
                                   <div class="text-right">
-                                    <h2 class="mb-0">
-                                      <span class="counter">{{records.summary}} Record</span>
-                                    </h2>
+                                    <h4 class="mb-0">
+                                      <span class="counter">Discharge Summary</span>
+                                    </h4>
                                     <h6
                                       class="d-modal-link"
                                       v-b-modal.modal-3
-                                    >View Discharge Summary</h6>
+                                    >View {{records.summary}} Record</h6>
                                   </div>
                                 </div>
                               </template>
@@ -222,61 +273,6 @@
                         <!-- // IPR data ends here -->
                       </tab-content-item>
                     </tab-content>
-                  </b-col>
-                </b-row>
-              </b-col>
-            </b-row>
-          </template>
-        </iq-card>
-        <iq-card body-class="pb-0">
-          <template v-slot:headerTitle>
-            <h4 class="card-title">Bookings:</h4>
-          </template>
-          <template v-slot:body>
-            <b-row>
-              <b-col md="12">
-                <b-row>
-                  <b-col lg="12">
-                    <!-- // Bookings data here -->
-                    <b-row>
-                      <b-col md="12" lg="6">
-                        <iq-card
-                          class-name="iq-card-block iq-card-stretch iq-card-height"
-                          body-class="iq-bg-primary rounded"
-                        >
-                          <template v-slot:body>
-                            <div class="d-flex align-items-center justify-content-between"
-                            @click="$router.push({ name: 'default.add-appointment' })">
-                              <div class="rounded-circle iq-card-icon bg-white">
-                                <i class="ri-user-fill"></i>
-                              </div>
-                              <div class="text-right">
-                                <h4 class="d-modal-link">Book New Appointment</h4>
-                              </div>
-                            </div>
-                          </template>
-                        </iq-card>
-                      </b-col>
-                      <b-col md="12" lg="6">
-                        <iq-card
-                          class-name="iq-card-block iq-card-stretch iq-card-height"
-                          body-class="iq-bg-primary rounded"
-                        >
-                          <template v-slot:body>
-                            <div class="d-flex align-items-center justify-content-between"
-                            @click="$router.push({ name: 'default.lab-test-booking' })">
-                              <div class="rounded-circle iq-card-icon bg-white">
-                                <i class="ri-women-fill"></i>
-                              </div>
-                              <div class="text-right">
-                                <h4 class="d-modal-link">Book New Lab Test</h4>
-                              </div>
-                            </div>
-                          </template>
-                        </iq-card>
-                      </b-col>
-                    </b-row>
-                    <!-- // Bookings data ends here -->
                   </b-col>
                 </b-row>
               </b-col>
@@ -321,16 +317,20 @@
 </template>
 <script>
 import IqCard from '../../components/wellem/cards/iq-card'
-import { wellem } from '../../config/pluginInit'
-import constant from '../../config/constant'
+import { wellem, customMethods } from '../../config/pluginInit'
+import { constant } from '../../config/constant'
 import AuthServices from './../../services/auth'
 
 export default {
   name: 'Dashboard',
   components: { IqCard },
   mounted () {
-    if (constant.authToken === '' || constant.authToken === undefined || constant.authToken === null) {
-      this.$router.push({ name: 'auth.sign-in' })
+    if (
+      constant.authPToken === '' ||
+      constant.authPToken === undefined ||
+      constant.authPToken === null
+    ) {
+      this.$router.push({ name: 'patient.sign-in' })
     }
     this.getPatientData()
     wellem.index()
@@ -352,22 +352,26 @@ export default {
           'Admission ID': '234324453',
           'Hospital Name': 'Apolo, Gurgaon',
           Status: 'Discharged'
-        }, {
+        },
+        {
           Date: '11/01/2020',
           'Admission ID': '234324442',
           'Hospital Name': 'Apolo, Gurgaon',
           Status: 'Discharged'
-        }, {
+        },
+        {
           Date: '10/01/2020',
           'Admission ID': '234324430',
           'Hospital Name': 'Apolo, Gurgaon',
           Status: 'Discharged'
-        }, {
+        },
+        {
           Date: '09/01/2020',
           'Admission ID': '234324412',
           'Hospital Name': 'Apolo, Gurgaon',
           Status: 'Discharged'
-        }],
+        }
+      ],
       appointments: [
         {
           patient: 'Petey Cruiser',
@@ -376,7 +380,43 @@ export default {
           timing: '8:00 AM',
           contact: '+1-202-555-0146'
         }
-      ]
+      ],
+      chart1: {
+        series: [
+          {
+            name: 'series1',
+            data: [31, 40, 28, 51, 42, 109, 100]
+          }
+        ],
+        chart: {
+          height: 350,
+          type: 'area'
+        },
+        colors: ['#089bab'],
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'datetime',
+          categories: [
+            '2018-09-19T00:00:00.000Z',
+            '2018-09-19T01:30:00.000Z',
+            '2018-09-19T02:30:00.000Z',
+            '2018-09-19T03:30:00.000Z',
+            '2018-09-19T04:30:00.000Z',
+            '2018-09-19T05:30:00.000Z',
+            '2018-09-19T06:30:00.000Z'
+          ]
+        },
+        tooltip: {
+          x: {
+            format: 'dd/MM/yy HH:mm'
+          }
+        }
+      }
     }
   },
   methods: {
@@ -388,11 +428,8 @@ export default {
           constant.userName = response.data.name
         })
         .catch(error => {
-          console.log(error)
-          localStorage.removeItem('userName')
-          localStorage.removeItem('authToken')
-          this.$router.push({ name: 'auth.sign-in' })
-        // this.errored = true
+          console.log('err', error)
+          customMethods.resetUserState('p', false, constant, this)
         })
     }
   }

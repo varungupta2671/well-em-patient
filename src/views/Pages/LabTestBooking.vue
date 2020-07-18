@@ -2,8 +2,8 @@
   <b-container fluid>
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb bg-primary">
-        <li class="breadcrumb-item"><a href="" @click="$router.push({ name: 'dashboard.dashboard' })" class="text-white"><i class="ri-home-4-line mr-1 float-left"></i>Home</a></li>
+      <ol class="breadcrumb bg-white">
+        <li class="breadcrumb-item"><a href="" @click="$router.push({ name: 'default.dashboard-patient' })" class="text-primary"><i class="ri-home-4-line mr-1 float-left"></i>Home</a></li>
         <!-- <li class="breadcrumb-item active text-white" aria-current="page">Dashboard</li> -->
       </ol>
     </nav>

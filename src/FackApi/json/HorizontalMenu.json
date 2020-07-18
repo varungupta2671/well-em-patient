@@ -12,7 +12,7 @@
         "title": "Dashboard1",
         "is_active": false,
         "link": {
-          "name": "dashboard.dashboard"
+          "name": "default.dashboard-patient"
         },
         "class_name": "",
         "is_icon_class": false,
@@ -397,7 +397,7 @@
         "title": "Login",
         "is_active": false,
         "link": {
-          "name": "auth.sign-in"
+          "name": "patient.sign-in"
         },
         "class_name": "",
         "is_icon_class": false,

@@ -2,7 +2,7 @@
   <div class="container-fluid p-0">
     <div class="row no-gutters">
       <div class="col-sm-12 text-center">
-        <div class="iq-error" :class="$route.params.code !== '404' ? 'error-500' : ''">
+        <div class="iq-error" :class="$route.params.code !== '404' ? '500' : ''">
           <img :src="image404" class="img-fluid iq-error-img" alt="404" v-if="$route.params.code === '404'">
           <img :src="image500" class="img-fluid iq-error-img" alt="500" v-else>
           <h2 class="mb-0">Oops! This Page is Not Found.</h2>

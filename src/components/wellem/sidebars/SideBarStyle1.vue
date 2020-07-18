@@ -20,7 +20,7 @@ import List from '../menus/ListStyle1'
 export default {
   name: 'SideBarStyle1',
   props: {
-    homeURL: { type: Object, default: () => ({ name: 'dashboard.dashboard' }) },
+    homeURL: { type: Object, default: () => ({ name: 'default.dashboard-patient' }) },
     items: { type: Array },
     logo: { type: String, default: require('../../../assets/images/well-em-logo.png') },
     horizontal: { type: Boolean },

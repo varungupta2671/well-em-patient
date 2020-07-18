@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader />
-    <section class="sign-in-page">
+    <section class="sign-in-patient-page sign-in-common">
       <b-container class="sign-in-page-bg p-0"> <!--- mt-5 --->
         <div class="row no-gutters">
           <div class="col-md-6 text-center position-relative">

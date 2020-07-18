@@ -1,5 +1,5 @@
 import { instance } from './index'
-import constant from '../config/constant'
+import { getServiceToken } from '../config/constant'
 
 export default {
   register (userType, userData) {
@@ -9,7 +9,10 @@ export default {
     return instance.post('/auth/signin/' + userType, userData)
   },
   checkAuth (userType) {
-    instance.defaults.headers.common['token'] = constant.authToken
-    return instance.post('/auth/check/' + userType)
+    const token = getServiceToken(userType)
+    if (token) {
+      instance.defaults.headers.common['token'] = token
+      return instance.post('/auth/check/' + userType)
+    }
   }
 }

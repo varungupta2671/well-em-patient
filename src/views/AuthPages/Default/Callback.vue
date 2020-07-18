@@ -3,7 +3,7 @@
 </template>
 <script>
 import auth0 from 'auth0-js'
-import constant from '../../../config/constant'
+import { constant } from '../../../config/constant'
 export default {
   name: 'Callback',
   mounted () {

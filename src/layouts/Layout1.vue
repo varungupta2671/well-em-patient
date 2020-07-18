@@ -7,7 +7,7 @@
       <SideBarStyle1 :items="verticalMenu" :horizontal="horizontal" :logo="logo" @toggle="sidebarMini" />
       <div id="content-page" class="content-page" :class="horizontal ? 'ml-0' : ''">
         <!-- TOP Nav Bar -->
-        <NavBarStyle1 title="Dashboard" :homeURL="{ name: 'dashboard.dashboard' }" @toggle="sidebarMini" :logo="logo" :horizontal="horizontal" :items="horizontalMenu">
+        <NavBarStyle1 title="Dashboard" :homeURL="{ name: 'default.dashboard-patient' }" @toggle="sidebarMini" :logo="logo" :horizontal="horizontal" :items="horizontalMenu">
           <template slot="responsiveRight">
             <ul class="navbar-nav ml-auto navbar-list">
               <li class="nav-item iq-full-screen">
@@ -50,7 +50,7 @@
                 <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
                   <img :src="userProfile" class="img-fluid rounded mr-3" alt="user">
                   <div class="caption">
-                    <h6 class="mb-0 line-height user-name">{{ userName }}</h6>
+                    <h6 class="mb-0 line-height user-name">{{ userName | capitalizeEach }}</h6>
                     <span class="font-size-12">{{ $t('nav.user.available') }}</span>
                   </div>
                 </a>
@@ -58,7 +58,7 @@
                   <div class="iq-card shadow-none m-0">
                     <div class="iq-card-body p-0 ">
                       <div class="bg-primary p-3">
-                        <h5 class="mb-0 text-white line-height user-name">Hello {{ userName }}</h5>
+                        <h5 class="mb-0 text-white line-height user-name">Hello {{ userName | capitalizeEach }}</h5>
                       </div>
                       <a href="#" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
@@ -127,12 +127,12 @@ import SideBarStyle1 from '../components/wellem/sidebars/SideBarStyle1'
 import NavBarStyle1 from '../components/wellem/navbars/NavBarStyle1'
 import SideBarItems from '../FackApi/json/SideBar'
 import HorizontalItems from '../FackApi/json/HorizontalMenu'
-import profile from '../assets/images/user/01.jpg'
+import profile from '../assets/images/user/11.png'
 import loader from '../assets/images/well-em-logo.png'
-import { wellem } from '../config/pluginInit'
+import { wellem, customMethods } from '../config/pluginInit'
 import { Users } from '../FackApi/api/chat'
 import { mapGetters, mapActions } from 'vuex'
-import constant from '../config/constant'
+import { constant } from '../config/constant'
 export default {
   name: 'Layout1',
   components: {
@@ -207,10 +207,7 @@ export default {
       this.light()
     },
     logout () {
-      localStorage.removeItem('userName')
-      localStorage.removeItem('authToken')
-      constant.authToken = null
-      this.$router.push({ name: 'auth.sign-in' })
+      customMethods.resetUserState('d', true, constant, this)
     },
     langChange (lang) {
       this.langChangeState(lang)

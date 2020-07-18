@@ -81,7 +81,7 @@ export default {
       this.login()
     },
     login () {
-      this.$router.push({ name: 'dashboard.dashboard' })
+      this.$router.push({ name: 'default.dashboard-patient' })
     }
   }
 }

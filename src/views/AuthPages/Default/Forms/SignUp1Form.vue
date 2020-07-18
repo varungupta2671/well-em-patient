@@ -41,10 +41,10 @@
       <div class="sign-info">
           <span class="dark-color d-inline-block line-height-2">
             Already Have Account ?
-              <router-link to="/dark/auth/sign-in" class="iq-waves-effect pr-4" v-if="$route.meta.dark">
+              <router-link to="/patient/sign-in" class="iq-waves-effect pr-4" v-if="$route.meta.dark">
                 Sign in
               </router-link>
-            <router-link to="/auth/sign-in" class="iq-waves-effect pr-4" v-else>
+            <router-link to="/patient/sign-in" class="iq-waves-effect pr-4" v-else>
                 Sign in
               </router-link>
           </span>
@@ -87,12 +87,12 @@ export default {
     },
     jwtRegister () {
       this.$store.dispatch('Setting/addUserAction', this.user)
-      this.$router.replace('/auth/sign-in')
+      this.$router.replace('/patient/sign-in')
     },
     passportRegister () {
       auth.register(this.user).then(response => {
         if (response.status) {
-          this.$router.push('/auth/sign-in')
+          this.$router.push('/patient/sign-in')
         } else if (response.data.errors.length > 0) {
           this.$refs.form.setErrors(response.data.errors)
         }
@@ -100,7 +100,7 @@ export default {
     },
     firebaseRegister () {
       firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password).then((user) => {
-        this.$router.replace('/auth/sign-in')
+        this.$router.replace('/patient/sign-in')
         // eslint-disable-next-line handle-callback-err
       }).catch((err) => {
       })

@@ -9,7 +9,7 @@
 
 import SignUp1Form from './Forms/SignUp1Form'
 import auth0 from 'auth0-js'
-import constant from '../../../config/constant'
+import { constant } from '../../../config/constant'
 
 export default {
   name: 'SignUp1',

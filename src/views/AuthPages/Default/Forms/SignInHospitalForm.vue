@@ -1,18 +1,16 @@
 <template>
   <ValidationObserver ref="form" v-slot="{ handleSubmit }">
-    <form novalidate @submit.prevent="handleSubmit(onSubmit)">
-      <!--- class="mt-4" --->
-      <p>Verify your mobile number to access your account.</p>
-      <ValidationProvider vid="mboile" name="Mobile Number" rules="required" v-slot="{ errors }">
+    <form novalidate @submit.prevent="handleSubmit(onSubmit)"> <!--- class="mt-4" --->
+      <ValidationProvider vid="hid" name="Staff Id" rules="required" v-slot="{ errors }">
         <div class="form-group">
-          <label for="mobInput">Mobile Number</label>
+          <label for="sInput">Hospital user Id</label>
           <input
             type="text"
             :class="'form-control mb-0' +(errors.length > 0 ? ' is-invalid' : '')"
-            id="mobInput"
-            aria-describedby="emailHelp"
-            v-model="user.mboile"
-            placeholder="Enter Mobile Number"
+            id="sInput"
+            aria-describedby="sIdHelp"
+            v-model="user.uid"
+            placeholder="Enter Hospital user id"
             required
           />
           <div class="invalid-feedback">
@@ -20,16 +18,16 @@
           </div>
         </div>
       </ValidationProvider>
-      <ValidationProvider vid="password" name="OTP" rules="required" v-slot="{ errors }">
+      <ValidationProvider vid="password" name="Password" rules="required" v-slot="{ errors }">
         <div class="form-group">
-          <label for="passwordInput">OTP</label>
-          <router-link to="/auth/password-reset1" class="float-right">Generate OTP</router-link>
+          <label for="passwordInput">Password</label>
+          <router-link to="/auth/password-reset1" class="float-right">Forgot password?</router-link>
           <input
             type="password"
             :class="'form-control mb-0' +(errors.length > 0 ? ' is-invalid' : '')"
             id="passwordInput"
             v-model="user.password"
-            placeholder="OTP"
+            placeholder="Password"
             required
           />
           <div class="invalid-feedback">
@@ -38,6 +36,10 @@
         </div>
       </ValidationProvider>
       <div class="d-inline-block w-100">
+        <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+          <input type="checkbox" class="custom-control-input" :id="formType" />
+          <label class="custom-control-label" :for="formType">Remember Me</label>
+        </div>
         <button type="submit" class="btn btn-primary float-right">Sign in</button>
       </div>
       <div class="sign-info">
@@ -58,18 +60,20 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import AuthServices from './../../../../services/auth'
+import { constant } from '../../../../config/constant'
 
 export default {
-  name: 'SignIn3Form',
+  name: 'SignIn1Form',
   props: ['formType', 'email', 'password'],
   data: () => ({
     user: {
-      email: '',
+      uid: '',
       password: ''
     }
   }),
   mounted () {
-    // this.user.email = this.$props.email
+    this.user.uid = this.$props.uid
     this.user.password = this.$props.password
   },
   computed: {
@@ -79,10 +83,17 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.login()
-    },
-    login () {
-      this.$router.push({ name: 'default.dashboard-patient' })
+      AuthServices.login('h', this.user)
+        .then(response => {
+          constant.authDToken = response.headers['auth-token']
+          localStorage.setItem('authDToken', response.headers['auth-token'])
+          localStorage.setItem('userType', 'h')
+          this.$router.push({ name: 'default.dashboard-hospital' })
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        })
     }
   }
 }

@@ -10,6 +10,7 @@ NOTE: This file contains the custom styling.
 ================================================
 
 :: General
+:: Auth
 :: Dashboard
 :: Add Appointment
 :: Lab Test Booking
@@ -25,7 +26,23 @@ NOTE: This file contains the custom styling.
 .iq-sidebar {width: 172px;}
 .breadcrumb {border-radius: 20px;margin-bottom: 20px;}
 .info-header {color: #3f414d;}
-.user-name {text-transform: capitalize}
+
+/*---------------------------------------------------------------------
+                               Auth
+-----------------------------------------------------------------------*/
+// Patient Styles
+.sign-in-patient-page .sign-in-detail { padding: 100px; height: 100vh; border-radius: 40px; }
+.sign-in-patient-page .sign-in-logo { display: inline-block; width: 100%; }
+.sign-in-patient-page .sign-in-logo img { height: 165px; } //{ height: 100px; } 
+.sign-in-patient-page .sign-in-from { padding: 20px 60px; border-radius: 37px; position: absolute; top: 10%; bottom: 10%; left: 0; right: 0; background: #fff; }
+.sign-in-patient-page .sign-in-page-bg::after { position: absolute; content: ""; top: 0; bottom: 0; left: 0; right: 270px; z-index: -1; background: rgba(8, 155, 171, 1); background: -moz-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: -webkit-gradient(left top, right top, color-stop(0%, rgba(8, 155, 171, 1)), color-stop(100%, rgba(13, 181, 200, 1))); background: -webkit-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: -o-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: -ms-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: linear-gradient(to right, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#089bab', endColorstr='#0db5c8', GradientType=1); } //border-radius: 40px; 
+
+// Staff Styles
+.sign-in-staff-page .sign-in-detail { padding: 100px; height: 100vh; border-radius: 40px; margin: 0 auto; }
+.sign-in-staff-page .sign-in-logo { display: inline-block; width: 100%; text-align: center; }
+.sign-in-staff-page .sign-in-logo img { height: 165px;} //{ height: 100px; } 
+.sign-in-staff-page .sign-in-from { padding: 20px 60px; border-radius: 37px; position: absolute; left: 0; right: 0; background: #fff; }
+.sign-in-staff-page .sign-in-page-bg::after { position: absolute; content: ""; top: 0; bottom: 0; left: 0; right: 0; z-index: -1; background: rgba(8, 155, 171, 1); background: -moz-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: -webkit-gradient(left top, right top, color-stop(0%, rgba(8, 155, 171, 1)), color-stop(100%, rgba(13, 181, 200, 1))); background: -webkit-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: -o-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: -ms-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); background: linear-gradient(to right, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#089bab', endColorstr='#0db5c8', GradientType=1); } //border-radius: 40px; 
 
 /*---------------------------------------------------------------------
                                Dashboard
@@ -33,8 +50,8 @@ NOTE: This file contains the custom styling.
 .table .thead-light th {color: #089bab;background: #ceebee;border-color: #7ac6ce;}
 // ul#dashboardTab li { background-color: #eff7f8; }
 ul#dashboardTab li a { border-color: #ceebee; }
-ul#dashboardTab li:first-child { border-radius: 15px 0 0 15px; border-left: none; }
-ul#dashboardTab li:last-child { border-radius: 0 15px 15px 0; }
+ul#dashboardTab li:first-child { border-radius: 25px 0 0 25px; border-left: none; }
+ul#dashboardTab li:last-child { border-radius: 0 25px 25px 0; }
 .d-modal-link {cursor: pointer;}
 .d-modal-link:focus {outline: none;}
 .d-modal-link:hover {color: #089bab;}

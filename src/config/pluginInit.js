@@ -42,7 +42,7 @@ export const wellem = {
       breadCrumb: [
         {
           html: '<i class="ri-home-4-line mr-1 float-left"></i>Home',
-          to: { name: 'dashboard.dashboard' }
+          to: { name: 'default.dashboard-patient' }
         },
         {
           text: Route.currentRoute.meta.name,
@@ -224,7 +224,7 @@ export const wellem = {
         mainElement.toggleClass('active')
 
         e.preventDefault()
-      } else if ($(myTargetElement).is('.search-input')) {} else {
+      } else if ($(myTargetElement).is('.search-input')) { } else {
         $('.navbar-list li').removeClass('iq-show')
         $('.navbar-list li .search-toggle').removeClass('active')
       }
@@ -442,7 +442,29 @@ export const flatpickerSetting = {
   dateFormat: 'Y-m-d'
 }
 
-export const capitalize = (s) => {
-  if (typeof s !== 'string') return ''
-  return s.charAt(0).toUpperCase() + s.slice(1)
+export const customMethods = {
+  resetUserState: (u, l, c, t) => {
+    localStorage.removeItem('userName')
+    switch (l) {
+      case true:
+        c.userName = null
+        switch (u) {
+          case 'p':
+            c.authPToken = null
+            localStorage.removeItem('authPToken')
+            t.$router.push({ name: 'patient.sign-in' })
+            break
+          case 'd':
+            c.authDToken = null
+            localStorage.removeItem('authDToken')
+            t.$router.push({ name: 'staff.sign-in' })
+            break
+          default:
+        }
+        break
+      case false:
+        t.$router.push({ name: 'pages.error', params: { code: '500' }, replace: true })
+    }
+    return false
+  }
 }
