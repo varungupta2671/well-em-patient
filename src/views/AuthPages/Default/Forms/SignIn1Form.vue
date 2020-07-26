@@ -92,7 +92,7 @@ export default {
           this.$router.push({ name: 'default.dashboard-patient' })
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error)
           this.errored = true
         })
     }

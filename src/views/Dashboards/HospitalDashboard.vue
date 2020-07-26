@@ -1,109 +1,80 @@
 <template>
   <b-container fluid>
     <b-row>
-      <b-col sm="12">
-        <b-row>
-          <b-col md="6" lg="3">
-            <iq-card class-name="iq-card-block iq-card-stretch iq-card-height">
-              <template v-slot:body>
-                <div class="iq-progress-bar progress-bar-vertical iq-bg-primary">
-                  <span class="bg-primary" data-percent="70"></span>
-                </div>
-                <span class="line-height-4">10 feb, 2020</span>
-                <h4 class="mb-2 mt-2">1 Ongoing Treatments</h4>
-                <p class="mb-0 text-secondary line-height">Reminder</p>
-              </template>
-            </iq-card>
-          </b-col>
-          <b-col md="6" lg="3">
-            <iq-card class-name="iq-card-block iq-card-stretch iq-card-height">
-              <template v-slot:body>
-                <div class="iq-progress-bar progress-bar-vertical iq-bg-danger">
-                  <span class="bg-danger" data-percent="50"></span>
-                </div>
-                <span class="line-height-4">12 Dec, 2020</span>
-                <h4 class="mb-2 mt-2">1 Upcoming Treatment</h4>
-                <p class="mb-0 text-secondary line-height">Reminder</p>
-              </template>
-            </iq-card>
-          </b-col>
-          <b-col md="6" lg="3">
-            <iq-card class-name="iq-card-block iq-card-stretch iq-card-height">
-              <template v-slot:body>
-                <div class="iq-progress-bar progress-bar-vertical iq-bg-warning">
-                  <span class="bg-warning" data-percent="80"></span>
-                </div>
-                <span class="line-height-4">15 Dec, 2020</span>
-                <h4 class="mb-2 mt-2">1 Upcoming Treatment</h4>
-                <p class="mb-0 text-secondary line-height">Reminder</p>
-              </template>
-            </iq-card>
-          </b-col>
-          <b-col md="6" lg="3">
-            <iq-card class-name="iq-card-block iq-card-stretch iq-card-height" nobody>
-              <div
-                class="iq-card-body p-0 rounded"
-                :style="`background: url(${require('../../assets/images/page-img/38.jpg')}) no-repeat scroll center center; background-size: contain;  min-height: 146px;`"
-              ></div>
-            </iq-card>
-          </b-col>
-        </b-row>
-      </b-col>
       <b-col lg="4">
-        <!-- iq-card-stretch iq-card-height iq-user-profile-block -->
-        <iq-card class-name="iq-card-block">
-          <template v-slot:body>
-            <div class="user-details-block">
-              <div class="user-profile text-center">
-                <img
-                  src="../../assets/images/user/11.png"
-                  alt="profile-img"
-                  class="avatar-130 img-fluid"
-                />
-              </div>
-              <div class="text-center mt-3">
-                <h4>
-                  <b>{{ staff.sname | capitalizeEach }}</b>
-                </h4>
-                <p>{{staff.stype | staff}}</p>
-                <p>Neurology Specialist</p>
-                <!-- <a href="#" class="btn btn-primary">Assign</a> -->
-              </div>
-              <hr />
-              <ul class="doctoe-sedual d-flex align-items-center justify-content-between p-0">
-                <li class="text-center">
-                  <h3 class="counter">{{staff.yearOfReg | experience}} Yrs</h3>
-                  <span>Experience</span>
-                </li>
-                <li class="text-center">
-                  <h3 class="counter">{{staff.qualification}}</h3>
-                  <span>Degree</span>
+        <iq-card class-name="iq-card-block iq-card-stretch iq-card-height" nobody>
+          <div class="iq-card-body">
+            <h3 class="mb-3">Search Staff</h3>
+            <div class="iq-search-bar search-user p-0">
+              <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+                <form @submit.prevent="handleSubmit(getUserDetails)" class="searchbox mb-3">
+                  <ValidationProvider
+                    vid="uid"
+                    name="Staff Id"
+                    rules="required"
+                    v-slot="{ errors }"
+                  >
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="text search-input"
+                        :class="'form-control mb-0' +(errors.length > 0 ? ' is-invalid' : '')"
+                        v-model="patientChar"
+                        placeholder="Enter Staff ID here..."
+                      />
+                      <a class="search-link" href="#">
+                        <i class="ri-search-line"></i>
+                      </a>
+                      <div class="invalid-feedback">
+                        <span>{{ errors[0] }}</span>
+                      </div>
+                    </div>
+                  </ValidationProvider>
+                </form>
+              </ValidationObserver>
+              <h6 class="mb-3">All Staff List:</h6>
+              <ul class="doctors-lists m-0 p-0">
+                <li
+                  class="d-flex mb-4 align-items-center"
+                  v-for="doctor in doctors"
+                  :key="doctor.name"
+                >
+                  <div class="user-img img-fluid">
+                    <img :src="doctor.img" alt="story-img" class="rounded-circle avatar-40" />
+                  </div>
+                  <div class="media-support-info ml-3">
+                    <h6>{{doctor.name}}</h6>
+                    <p class="mb-0 font-size-12">{{doctor.speciality}} ({{doctor.degree}})</p>
+                  </div>
+                  <div class="iq-card-header-toolbar d-flex align-items-center">
+                    <b-dropdown
+                      size="lg"
+                      variant="link"
+                      toggle-class="p-0 text-decoration-none"
+                      no-caret
+                    >
+                      <template v-slot:button-content class="p-0">
+                        <span
+                          class="dropdown-toggle p-0"
+                          id="dropdownMenuButton6"
+                          data-toggle="dropdown"
+                        >
+                          <i class="ri-more-2-line"></i>
+                        </span>
+                      </template>
+                      <b-dropdown-item href="#">
+                        <i class="ri-eye-line mr-2"></i>View
+                      </b-dropdown-item>
+                      <b-dropdown-item href="#">
+                        <i class="ri-bookmark-line mr-2"></i>Appointment
+                      </b-dropdown-item>
+                    </b-dropdown>
+                  </div>
                 </li>
               </ul>
             </div>
-          </template>
-        </iq-card>
-        <iq-card body-class="iq-card-body">
-          <template v-slot:body>
-            <div class="about-info m-0 p-0">
-              <div class="row">
-                <div class="col-4 info-header">Staff ID:</div>
-                <div class="col-8 text-warning">{{staff.sid}}</div>
-                <div class="col-4 info-header">Phone:</div>
-                <div class="col-8">{{staff.phone}}</div>
-                <div class="col-4 info-header">Email:</div>
-                <div class="col-8">{{staff.email}}</div>
-                <div class="col-4 info-header">Aadhar:</div>
-                <div class="col-8">{{staff.aadharid}}</div>
-                <div class="col-4 info-header">D.O.B:</div>
-                <div class="col-8">{{staff.dob | formatDate}}</div>
-                <div class="col-4 info-header">Sex:</div>
-                <div class="col-8">{{staff.sex | gender}}</div>
-                <div class="col-4 info-header">Certification:</div>
-                <div class="col-8">{{staff.regNo}}</div>
-              </div>
-            </div>
-          </template>
+          </div>
+          <!-- <ApexChart element="wave-chart-7" :chartOption="chart7" :isLive="true" /> -->
         </iq-card>
       </b-col>
       <b-col lg="4">
@@ -111,16 +82,21 @@
         <iq-card class-name="iq-card-block iq-card-stretch iq-card-height" nobody>
           <div class="iq-card-body">
             <h3 class="mb-3">Search Patient</h3>
-            <div class="iq-search-bar p-0">
+            <div class="iq-search-bar search-user p-0">
               <ValidationObserver ref="form" v-slot="{ handleSubmit }">
                 <form @submit.prevent="handleSubmit(getUserDetails)" class="searchbox mb-3">
-                  <ValidationProvider vid="uid" name="Patient Id" rules="required" v-slot="{ errors }">
+                  <ValidationProvider
+                    vid="uid"
+                    name="Patient Id"
+                    rules="required"
+                    v-slot="{ errors }"
+                  >
                     <div class="form-group">
                       <input
                         type="text"
                         class="text search-input"
                         :class="'form-control mb-0' +(errors.length > 0 ? ' is-invalid' : '')"
-                        v-model="patientChar"
+                        v-model="staffChar"
                         placeholder="Enter Patient ID here..."
                       />
                       <a class="search-link" href="#">
@@ -133,67 +109,168 @@
                   </ValidationProvider>
                 </form>
               </ValidationObserver>
-              <h6 class="mb-3">Recent Patients:</h6>
+              <h6 class="mb-3">All Patients:</h6>
               <ul class="doctors-lists m-0 p-0">
-              <li
-                class="d-flex mb-4 align-items-center"
-                v-for="doctor in doctors"
-                :key="doctor.name"
-              >
-                <div class="user-img img-fluid">
-                  <img :src="doctor.img" alt="story-img" class="rounded-circle avatar-40" />
-                </div>
-                <div class="media-support-info ml-3">
-                  <h6>{{doctor.name}}</h6>
-                  <p class="mb-0 font-size-12">{{doctor.location}}</p>
-                </div>
-                <div class="iq-card-header-toolbar d-flex align-items-center">
-                  <b-dropdown
-                    size="lg"
-                    variant="link"
-                    toggle-class="p-0 text-decoration-none"
-                    no-caret
-                  >
-                    <template v-slot:button-content class="p-0">
-                      <span
-                        class="dropdown-toggle p-0"
-                        id="dropdownMenuButton6"
-                        data-toggle="dropdown"
-                      >
-                        <i class="ri-more-2-line"></i>
-                      </span>
-                    </template>
-                    <b-dropdown-item href="#">
-                      <i class="ri-eye-line mr-2"></i>View
-                    </b-dropdown-item>
-                    <b-dropdown-item href="#">
-                      <i class="ri-bookmark-line mr-2"></i>Appointment
-                    </b-dropdown-item>
-                  </b-dropdown>
-                </div>
-              </li>
-            </ul>
+                <li
+                  class="d-flex mb-4 align-items-center"
+                  v-for="patient in patients"
+                  :key="patient.name"
+                >
+                  <div class="user-img img-fluid">
+                    <img :src="patient.img" alt="story-img" class="rounded-circle avatar-40" />
+                  </div>
+                  <div class="media-support-info ml-3">
+                    <h6>{{patient.name}}</h6>
+                    <p class="mb-0 font-size-12">{{patient.location}}</p>
+                  </div>
+                  <div class="iq-card-header-toolbar d-flex align-items-center">
+                    <b-dropdown
+                      size="lg"
+                      variant="link"
+                      toggle-class="p-0 text-decoration-none"
+                      no-caret
+                    >
+                      <template v-slot:button-content class="p-0">
+                        <span
+                          class="dropdown-toggle p-0"
+                          id="dropdownMenuButton6"
+                          data-toggle="dropdown"
+                        >
+                          <i class="ri-more-2-line"></i>
+                        </span>
+                      </template>
+                      <b-dropdown-item href="#">
+                        <i class="ri-eye-line mr-2"></i>View
+                      </b-dropdown-item>
+                      <b-dropdown-item href="#">
+                        <i class="ri-bookmark-line mr-2"></i>Appointment
+                      </b-dropdown-item>
+                    </b-dropdown>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
           <!-- <ApexChart element="wave-chart-7" :chartOption="chart7" :isLive="true" /> -->
         </iq-card>
       </b-col>
       <b-col lg="4">
+        <iq-card class-name="iq-card-block iq-card-stretch iq-card-height-half" nobody>
+          <div class="iq-card-body">
+            <h6>TOTAL STAFF</h6>
+            <h3>
+              <b>{{ doctors.length }}</b>
+            </h3>
+          </div>
+          <ApexChart element="wave-chart-7" :chartOption="chart7" :isLive="true" />
+        </iq-card>
+        <iq-card class-name="iq-card-block iq-card-stretch iq-card-height-half" nobody>
+          <div class="iq-card-body">
+            <h6>TOTAL PATIENTS ({{new Date() | formatDate}})</h6>
+            <h3>
+              <b>{{ patients.length }}</b>
+            </h3>
+          </div>
+          <ApexChart element="wave-chart-8" :chartOption="chart8" :isLive="true" />
+        </iq-card>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col lg="4">
         <iq-card
           class-name="iq-card-block iq-card-stretch iq-card-height"
           body-class="smaill-calender-home"
         >
           <template v-slot:headerTitle>
-            <h4 class="card-title">Appointments</h4>
+            <h4 class="card-title">Emergency Ward Bookings</h4>
           </template>
           <template v-slot:body>
             <flat-pickr :config="config" value class="d-none" />
           </template>
         </iq-card>
       </b-col>
-    </b-row>
-    <b-row>
-      <b-col lg="8">
+      <b-col lg="4">
+        <iq-card body-class="pb-0" class-name="iq-card-block iq-card-stretch iq-card-height">
+          <template v-slot:headerTitle>
+            <h4 class="card-title">Bookings:</h4>
+          </template>
+          <template v-slot:body>
+            <b-row>
+              <b-col md="12">
+                <b-row>
+                  <b-col lg="12">
+                    <!-- // Bookings data here -->
+                    <b-row>
+                      <b-col md="12">
+                        <iq-card
+                          class-name="iq-card-block iq-card-stretch iq-card-height"
+                          body-class="iq-bg-primary rounded"
+                        >
+                          <template v-slot:body>
+                            <div
+                              class="d-flex align-items-center justify-content-between"
+                              @click="$router.push({ name: 'default.add-appointment' })"
+                            >
+                              <div class="rounded-circle iq-card-icon bg-white">
+                                <i class="ri-user-fill"></i>
+                              </div>
+                              <div class="text-right">
+                                <h4 class="d-modal-link">Book New Appointment</h4>
+                              </div>
+                            </div>
+                          </template>
+                        </iq-card>
+                      </b-col>
+                      <b-col md="12">
+                        <iq-card
+                          class-name="iq-card-block iq-card-stretch iq-card-height"
+                          body-class="iq-bg-primary rounded"
+                        >
+                          <template v-slot:body>
+                            <div
+                              class="d-flex align-items-center justify-content-between"
+                              @click="$router.push({ name: 'default.lab-test-booking' })"
+                            >
+                              <div class="rounded-circle iq-card-icon bg-white">
+                                <i class="ri-women-fill"></i>
+                              </div>
+                              <div class="text-right">
+                                <h4 class="d-modal-link">Book New Lab Test</h4>
+                              </div>
+                            </div>
+                          </template>
+                        </iq-card>
+                      </b-col>
+                      <b-col md="12">
+                        <iq-card
+                          class-name="iq-card-block iq-card-stretch iq-card-height"
+                          body-class="iq-bg-primary rounded"
+                        >
+                          <template v-slot:body>
+                            <div
+                              class="d-flex align-items-center justify-content-between"
+                              @click="$router.push({ name: 'default.lab-test-booking' })"
+                            >
+                              <div class="rounded-circle iq-card-icon bg-white">
+                                <i class="ri-women-fill"></i>
+                              </div>
+                              <div class="text-right">
+                                <h4 class="d-modal-link">Prepare Bills</h4>
+                              </div>
+                            </div>
+                          </template>
+                        </iq-card>
+                      </b-col>
+                    </b-row>
+                    <!-- // Bookings data ends here -->
+                  </b-col>
+                </b-row>
+              </b-col>
+            </b-row>
+          </template>
+        </iq-card>
+      </b-col>
+      <b-col lg="4">
         <iq-card class-name="iq-card-block" iq-card-stretch iq-card-height>
           <template v-slot:headerTitle>
             <h4 class="card-title">Health Curve</h4>
@@ -202,26 +279,6 @@
             <ApexChart element="home-chart-06" :chartOption="darkChart1" v-if="$route.meta.dark" />
             <ApexChart element="home-chart-06" :chartOption="chart1" v-else />
           </template>
-        </iq-card>
-      </b-col>
-      <b-col lg="4">
-        <iq-card class-name="iq-card-block iq-card-stretch iq-card-height-half" nobody>
-          <div class="iq-card-body">
-            <h6>TOTAL APPOINTMENTS</h6>
-            <h3>
-              <b>100</b>
-            </h3>
-          </div>
-          <ApexChart element="wave-chart-7" :chartOption="chart7" :isLive="true" />
-        </iq-card>
-        <iq-card class-name="iq-card-block iq-card-stretch iq-card-height-half" nobody>
-          <div class="iq-card-body">
-            <h6>NEW PATIENTS</h6>
-            <h3>
-              <b>2</b>
-            </h3>
-          </div>
-          <ApexChart element="wave-chart-8" :chartOption="chart8" :isLive="true" />
         </iq-card>
       </b-col>
     </b-row>
@@ -239,33 +296,34 @@ export default {
   components: { IqCard },
   mounted () {
     if (
-      constant.authDToken === '' ||
-      constant.authDToken === undefined ||
-      constant.authDToken === null
+      constant.authHToken === '' ||
+      constant.authHToken === undefined ||
+      constant.authHToken === null
     ) {
-      this.$router.push({ name: 'staff.sign-in' })
+      this.$router.push({ name: 'hospital.sign-in' })
     }
     this.getStaffData()
     wellem.index()
   },
   methods: {
     getStaffData () {
-      AuthServices.checkAuth('d', this.patient)
+      AuthServices.checkAuth('h')
         .then(response => {
           if (response) {
             this.staff = response.data
-            localStorage.setItem('userName', response.data.sname)
+            localStorage.setItem('userName', response.data.hname)
             constant.userName = response.data.sname
           }
         })
         .catch(error => {
-          console.log('err', error)
+          // console.log('err', error)
           customMethods.resetUserState('d', false, constant, this)
         })
     },
 
     getUserDetails () {
-      userServices.searchPatient('d', this.patientChar)
+      userServices
+        .searchPatient('h', this.patientChar)
         .then(response => {
           if (response) {
             // console.log(response.data)
@@ -273,17 +331,19 @@ export default {
             this.$router.push({
               name: 'default.patient-details',
               params: { uid: this.patientData.hid, patient: this.patientData },
-              replace: true })
+              replace: true
+            })
           }
         })
         .catch(error => {
-          console.log('err', error)
+          // console.log('err', error)
           customMethods.resetUserState('d', false, constant, this)
         })
     }
   },
   data () {
     return {
+      staffChar: '',
       patientChar: '',
       patientData: {},
       staff: {
@@ -301,7 +361,7 @@ export default {
         dateFormat: 'Y-m-d',
         inline: true
       },
-      doctors: [
+      patients: [
         {
           name: 'Paul Molive',
           img: require('../../assets/images/user/01.jpg'),
@@ -318,26 +378,6 @@ export default {
           location: 'Punjab, India'
         },
         {
-          name: 'Robin Banks',
-          img: require('../../assets/images/user/04.jpg'),
-          location: 'Punjab, India'
-        },
-        {
-          name: 'Barry Wine',
-          img: require('../../assets/images/user/05.jpg'),
-          location: 'Patna, India'
-        },
-        {
-          name: 'Zack Lee',
-          img: require('../../assets/images/user/06.jpg'),
-          location: 'Patna, India'
-        },
-        {
-          name: 'Otto Matic',
-          img: require('../../assets/images/user/07.jpg'),
-          location: 'Punjab, India'
-        },
-        {
           name: 'Moe Fugga',
           img: require('../../assets/images/user/08.jpg'),
           location: 'Patna, India'
@@ -351,6 +391,68 @@ export default {
           name: 'Barry Cade',
           img: require('../../assets/images/user/10.jpg'),
           location: 'Punjab, India'
+        }
+      ],
+      doctors: [
+        {
+          name: 'Dr. Paul Molive',
+          img: require('../../assets/images/user/01.jpg'),
+          speciality: 'Cardiologists',
+          degree: 'MBBS, MD'
+        },
+        {
+          name: 'Dr. Barb Dwyer',
+          img: require('../../assets/images/user/02.jpg'),
+          speciality: 'Neurologist',
+          degree: 'MD'
+        },
+        {
+          name: 'Dr. Terry Aki',
+          img: require('../../assets/images/user/03.jpg'),
+          speciality: 'Anesthesiologists',
+          degree: 'MBBS'
+        },
+        {
+          name: 'Dr. Robin Banks',
+          img: require('../../assets/images/user/04.jpg'),
+          speciality: 'Gastroenterologists',
+          degree: 'MBBS, MD'
+        },
+        {
+          name: 'Dr. Barry Wine',
+          img: require('../../assets/images/user/05.jpg'),
+          speciality: 'Emergency Medicine Specialists',
+          degree: 'BAMS'
+        },
+        {
+          name: 'Dr. Zack Lee',
+          img: require('../../assets/images/user/06.jpg'),
+          speciality: 'Dermatologists',
+          degree: 'MS, MD'
+        },
+        {
+          name: 'Dr. Otto Matic',
+          img: require('../../assets/images/user/07.jpg'),
+          speciality: 'Endocrinologists',
+          degree: 'MBBS, MD'
+        },
+        {
+          name: 'Dr. Moe Fugga',
+          img: require('../../assets/images/user/08.jpg'),
+          speciality: 'Cardiologists',
+          degree: 'MD'
+        },
+        {
+          name: 'Dr. Bud Wiser',
+          img: require('../../assets/images/user/09.jpg'),
+          speciality: 'Dermatologists',
+          degree: 'MBBS'
+        },
+        {
+          name: 'Dr. Barry Cade',
+          img: require('../../assets/images/user/10.jpg'),
+          speciality: 'Neurologist',
+          degree: 'MBBS, MD'
         }
       ],
       appointments: [

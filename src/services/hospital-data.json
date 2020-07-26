@@ -1,0 +1,167 @@
+[
+    {
+      "departmentid": 1,
+      "departmentname": "Accident and emergency (A&E)",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 2,
+      "departmentname": "Anaesthetics",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 3,
+      "departmentname": "Breast screening",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 4,
+      "departmentname": "Cardiology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 5,
+      "departmentname": "Chaplaincy",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 6,
+      "departmentname": "Critical care",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 7,
+      "departmentname": "Diagnostic imaging",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 8,
+      "departmentname": "Discharge lounge",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 9,
+      "departmentname": "Ear nose and throat (ENT)",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 10,
+      "departmentname": "Elderly departmentidvices department",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 11,
+      "departmentname": "Gastroenterology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 12,
+      "departmentname": "General surgery",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 13,
+      "departmentname": "Gynaecology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 14,
+      "departmentname": "Haematology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 15,
+      "departmentname": "Maternity departments",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 16,
+      "departmentname": "Microbiology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 17,
+      "departmentname": "Neonatal unit",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 18,
+      "departmentname": "Nephrology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 19,
+      "departmentname": "Neurology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 20,
+      "departmentname": "Nutrition and dietetics",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 21,
+      "departmentname": "Obstetrics and gynaecology units",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 22,
+      "departmentname": "Occupational therapy",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 23,
+      "departmentname": "Oncology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 24,
+      "departmentname": "Ophthalmology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 25,
+      "departmentname": "Orthopaedics",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 26,
+      "departmentname": "Pain management clinics",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 27,
+      "departmentname": "Pharmacy",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 28,
+      "departmentname": "Physiotherapy",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 29,
+      "departmentname": "Radiotherapy",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 30,
+      "departmentname": "Renal unit",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 31,
+      "departmentname": "Rheumatology",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 32,
+      "departmentname": "Sexual health (genitourinary medicine)",
+      "departmentdescription": ""
+    },
+    {
+      "departmentid": 33,
+      "departmentname": "Urology",
+      "departmentdescription": ""
+    }
+  ]

@@ -85,13 +85,13 @@ export default {
     onSubmit () {
       AuthServices.login('h', this.user)
         .then(response => {
-          constant.authDToken = response.headers['auth-token']
-          localStorage.setItem('authDToken', response.headers['auth-token'])
+          constant.authHToken = response.headers['auth-token']
+          localStorage.setItem('authHToken', response.headers['auth-token'])
           localStorage.setItem('userType', 'h')
           this.$router.push({ name: 'default.dashboard-hospital' })
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error)
           this.errored = true
         })
     }

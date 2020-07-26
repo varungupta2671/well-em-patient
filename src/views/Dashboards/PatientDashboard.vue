@@ -428,7 +428,7 @@ export default {
           constant.userName = response.data.name
         })
         .catch(error => {
-          console.log('err', error)
+          // console.log('err', error)
           customMethods.resetUserState('p', false, constant, this)
         })
     }

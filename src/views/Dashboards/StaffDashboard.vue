@@ -111,7 +111,7 @@
         <iq-card class-name="iq-card-block iq-card-stretch iq-card-height" nobody>
           <div class="iq-card-body">
             <h3 class="mb-3">Search Patient</h3>
-            <div class="iq-search-bar p-0">
+            <div class="iq-search-bar search-user p-0">
               <ValidationObserver ref="form" v-slot="{ handleSubmit }">
                 <form @submit.prevent="handleSubmit(getUserDetails)" class="searchbox mb-3">
                   <ValidationProvider vid="uid" name="Patient Id" rules="required" v-slot="{ errors }">
@@ -250,7 +250,7 @@ export default {
   },
   methods: {
     getStaffData () {
-      AuthServices.checkAuth('d', this.patient)
+      AuthServices.checkAuth('d')
         .then(response => {
           if (response) {
             this.staff = response.data
@@ -259,7 +259,7 @@ export default {
           }
         })
         .catch(error => {
-          console.log('err', error)
+          // console.log('err', error)
           customMethods.resetUserState('d', false, constant, this)
         })
     },
@@ -277,7 +277,7 @@ export default {
           }
         })
         .catch(error => {
-          console.log('err', error)
+          // console.log('err', error)
           customMethods.resetUserState('d', false, constant, this)
         })
     }
